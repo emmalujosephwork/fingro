@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - My Webpage</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 
 <body>
@@ -22,20 +23,78 @@
         </div>
     </nav>
 
-    <div class="container">
-        <h1>Welcome to our Group Project</h1>
+    <!-- Parallax Section with Headings -->
+    <div class="parallax-container">
+        <div class="parallax"><img src="/images/parallax-background.jpg" alt="Parallax Background"></div>
+        <div class="content">
+            <h1 class="header pink-text text-lighten-2">Parallax Theme</h1>
+            <p class="light">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+    </div>
 
-        <div class="row">
-            <div class="col s6">
-                <a href="/grocery-plan" class="btn-large waves-effect waves-light blue">Grocery Planning</a>
+    <!-- Cards Section with Icons and Buttons -->
+    <div class="container">
+        <div class="row center-align">
+            <!-- Feature Card 1 -->
+            <div class="col s12">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title"><i class="material-icons">star</i> Feature One</span>
+                        <p>Lorem consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="/money-manager" class="btn pink">Expense More</a>
+                    </div>
+                </div>
             </div>
-            <div class="col s6">
-                <a href="/money-manager" class="btn-large waves-effect waves-light green">Money Manager</a>
+
+            <!-- Feature Card 2 -->
+            <div class="col s12">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title"><i class="material-icons">rss</i> Feature Two</span>
+                        <p>Lorem ipsum dolor sit amet, cc cc ccc vv vv vv vv bb bbb bb bb b consectetur adipiscing elit,</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="/grocery-plan" class="btn pink">Grocery More</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- About Section Parallax -->
+    <div class="parallax-container">
+        <div class="parallax"><img src="/images/about.jpg" alt="About Us"></div>
+        <div class="content">
+            <h1 class="header pink-text text-lighten-2">About Us</h1>
+            <p class="light">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+            <p class="light">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+        </div>
+    </div>
+    \
+    <!-- Footer Section -->
+    <footer class="page-footer pink">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 center-align">
+                    <p class="white-text">Copyright © Your website name</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Include Materialize JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script>
+        // Initialize Parallax
+        document.addEventListener('DOMContentLoaded', function() {
+            let elems = document.querySelectorAll('.parallax');
+            M.Parallax.init(elems);
+        });
+    </script>
 </body>
 
 </html>
