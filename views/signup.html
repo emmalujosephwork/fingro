@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - My Webpage</title>
+    <title>Sign Up - My Webpage</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
     <!-- Link to general styles.css -->
     <link rel="stylesheet" href="/css/styles.css">
-    <!-- Link to login-specific styles.css -->
-    <link rel="stylesheet" href="/css/login.css">
+    <!-- Link to signup-specific styles.css -->
+    <link rel="stylesheet" href="/css/signup.css">
 </head>
 
 <body>
@@ -27,18 +27,23 @@
         </div>
     </nav>
 
-    <!-- Login Container -->
+    <!-- Signup Form Container -->
     <div class="container">
         <div class="row">
-            <!-- Left Form Section -->
-            <div class="col s12 m6">
+            <!-- Form Section -->
+            <div class="col s12 m6 offset-m3">
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title">Sign In</span>
+                        <span class="card-title">Sign Up</span>
                         <form action="#" method="POST">
                             <div class="input-field">
-                                <input type="text" id="username" name="username" required>
-                                <label for="username">Username</label>
+                                <input type="text" id="name" name="name" required>
+                                <label for="name">Full Name</label>
+                            </div>
+
+                            <div class="input-field">
+                                <input type="email" id="email" name="email" required>
+                                <label for="email">Email</label>
                             </div>
 
                             <div class="input-field">
@@ -46,38 +51,20 @@
                                 <label for="password">Password</label>
                             </div>
 
-                            <label>
-                                <input type="checkbox" id="remember-me" />
-                                <span>Remember Me</span>
-                            </label>
+                            <div class="input-field">
+                                <input type="password" id="confirm-password" name="confirm-password" required>
+                                <label for="confirm-password">Confirm Password</label>
+                            </div>
 
                             <div class="input-field">
-                                <button type="submit" class="btn pink">Sign In</button>
+                                <input type="tel" id="mobile" name="mobile" required>
+                                <label for="mobile">Mobile Number</label>
                             </div>
 
-                            <div class="row">
-                                <div class="col s6">
-                                    <a href="#" class="pink-text text-lighten-2">Forgot Password?</a>
-                                </div>
-                                <div class="col s6 right-align">
-                                    <a href="#" class="pink-text text-lighten-2">Sign Up</a>
-                                </div>
+                            <div class="input-field">
+                                <button type="submit" class="btn pink">Sign Up</button>
                             </div>
                         </form>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right Welcome Section -->
-            <div class="col s12 m6">
-                <div class="card pink">
-                    <div class="card-content white-text">
-                        <h4>Welcome to Login</h4>
-                        <p>If you don't have an account, click on "Sign Up" to create one.</p>
-                        <!-- Sign Up Button -->
-                        <div class="center-align">
-                            <a href="/signup" class="btn pink btn-signup">Sign Up</a>
-                        </div>
                     </div>
                 </div>
             </div>
