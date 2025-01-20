@@ -1,0 +1,122 @@
+/* General Styles */
+body {
+    background-color: #f2f2f2;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+html {
+    height: 100%;
+}
+
+/* Sticky Footer */
+.container {
+    flex: 1;
+}
+
+footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background-color: #d81b60;
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+/* Contact Us Page Styles */
+.container {
+    width: 100%;
+    max-width: 1100px;
+    margin-top: 20px;
+}
+
+.card {
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card .card-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+.card .input-field input,
+.card .input-field textarea {
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.card .input-field label {
+    font-size: 1.1rem;
+}
+
+.card .btn {
+    width: 100%;
+    border-radius: 5px;
+    padding: 12px;
+    font-size: 1.2rem;
+}
+
+.card .row a {
+    font-size: 0.9rem;
+    text-decoration: underline;
+}
+
+.card .pink {
+    background-color: #d81b60 !important;
+}
+
+.card .pink-text.text-lighten-2 {
+    color: #f50057 !important;
+}
+
+.card .card-content {
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.card .card-content h5 {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.card .card-content p {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Icon alignment in the contact details */
+.material-icons {
+    vertical-align: middle;
+    font-size: 1.2rem;
+    margin-right: 5px;
+    color: #d81b60; /* Icon color matches the theme */
+}
+
+/* Ensure cards have equal heights */
+.row {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .row {
+        flex-direction: column;
+    }
+}

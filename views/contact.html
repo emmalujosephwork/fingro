@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - FinGro</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <!-- Link to contact-specific styles.css -->
+    <link rel="stylesheet" href="/css/contact.css">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo">FinGro</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/login">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content Section -->
+    <div class="container">
+        <div class="row">
+            <!-- Contact Form -->
+            <div class="col s12 m6">
+                <div class="card">
+                    <div class="card-content">
+                        <h5>Send Us a Message</h5>
+                        <form action="#" method="POST">
+                            <div class="input-field">
+                                <input type="text" id="name" name="name" required>
+                                <label for="name">Full Name</label>
+                            </div>
+                            <div class="input-field">
+                                <input type="email" id="email" name="email" required>
+                                <label for="email">Email Address</label>
+                            </div>
+                            <div class="input-field">
+                                <textarea id="message" name="message" class="materialize-textarea" required></textarea>
+                                <label for="message">Your Message</label>
+                            </div>
+                            <div class="input-field center-align">
+                                <button type="submit" class="btn pink">Send Message</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Details -->
+            <div class="col s12 m6">
+                <div class="card">
+                    <div class="card-content">
+                        <h5>Contact Details</h5>
+                        <p><i class="material-icons">📧</i> Email: support@fingro.com</p>
+                        <p><i class="material-icons">📱</i> Phone: +61 123 456 789</p>
+                        <p><i class="material-icons">🌍</i> Address: Somewhere on Planet Earth</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 center-align">
+                    <p class="white-text">Copyright © FinGro 2025. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Include Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        // Initialize Materialize components
+        document.addEventListener('DOMContentLoaded', function() {
+            let elems = document.querySelectorAll('.parallax');
+            M.Parallax.init(elems);
+        });
+    </script>
+</body>
+
+</html>
