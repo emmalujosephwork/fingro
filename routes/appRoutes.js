@@ -16,5 +16,10 @@ router.get('/login', appController.loginPage); // Add this route for login page
 
 // Signup Route (you can add this route if required for signup page)
 router.get('/signup', appController.signupPage);
+// About Page Route
+router.get('/about', appController.aboutPage);
+
+// Contact Us Page Route
+router.get('/contact', appController.contactPage);
 
 module.exports = router;

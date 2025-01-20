@@ -24,3 +24,13 @@ exports.loginPage = (req, res) => {
 exports.signupPage = (req, res) => {
     res.sendFile('signup.html', { root: './views' });
 };
+
+// About Page
+exports.aboutPage = (req, res) => {
+    res.sendFile('about.html', { root: './views' });
+};
+
+// Contact Us Page
+exports.contactPage = (req, res) => {
+    res.sendFile('contact.html', { root: './views' });
+};
