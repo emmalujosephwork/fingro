@@ -4,8 +4,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
 
-// Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/mydb', { useNewUrlParser: true, useUnifiedTopology: true })
+// Connect to MongoDB Atlas using your credentials
+mongoose.connect('mongodb+srv://fingroproject:emmalu123@fingrocloud.fgo8h.mongodb.net/fingrodb', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log('MongoDB connection error:', err));
 

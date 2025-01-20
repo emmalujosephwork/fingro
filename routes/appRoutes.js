@@ -12,10 +12,12 @@ router.get('/grocery-plan', appController.groceryPlan);
 router.get('/money-manager', appController.moneyManager);
 
 // Login Route
-router.get('/login', appController.loginPage); // Add this route for login page
+router.get('/login', appController.loginPage);
 
-// Signup Route (you can add this route if required for signup page)
-router.get('/signup', appController.signupPage);
+// Signup Route
+router.get('/signup', appController.signupPage); // Show the sign-up page
+router.post('/signup', appController.handleSignup); // Handle form submission
+
 // About Page Route
 router.get('/about', appController.aboutPage);
 
