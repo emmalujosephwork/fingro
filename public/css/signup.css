@@ -1,0 +1,140 @@
+/* Sign Up Page Styles */
+
+body {
+    background-color: #f2f2f2;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 1100px;
+    margin-top: 20px;
+}
+
+.card {
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card .card-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+.card .input-field input {
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.card .input-field label {
+    font-size: 1.1rem;
+}
+
+.card .btn {
+    width: 100%;
+    border-radius: 5px;
+    padding: 12px;
+    font-size: 1.2rem;
+}
+
+.card .row a {
+    font-size: 0.9rem;
+    text-decoration: underline;
+}
+
+.card .pink {
+    background-color: #d81b60 !important;
+}
+
+.card .pink-text.text-lighten-2 {
+    color: #f50057 !important;
+}
+
+.card .card-content {
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.card .card-content h4 {
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.card .card-content p {
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+
+/* Ensures both cards are the same height */
+
+.row {
+    justify-content: center;
+    /* Center the items in row */
+    gap: 0px;
+}
+
+.col.s12.m6.l6 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+}
+
+.col.s12.m6.l6:first-child {
+    width: 100%;
+    /* For Sign Up form card, make it full width */
+    margin-bottom: 20px;
+    /* Space between the Sign Up card and next card */
+}
+
+.col.s12.m6.l6:last-child {
+    display: none;
+    /* No need for the right card (Welcome) in Sign-Up page */
+}
+
+
+/* Sign Up Button Styling */
+
+.btn-signup {
+    font-size: 1.2rem;
+    padding: 12px 30px;
+    border-radius: 30px;
+    margin-top: 20px;
+    display: inline-block;
+    text-align: center;
+}
+
+
+/* Mobile view adjustments */
+
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+        padding: 10px;
+    }
+    .card .card-content h4 {
+        font-size: 1.5rem;
+    }
+    .card .card-title {
+        font-size: 1.8rem;
+    }
+    .row {
+        flex-direction: column;
+    }
+    .col.s12.m6.l6 {
+        margin-bottom: 20px;
+    }
+    /* Ensure the cards stack correctly on small screens */
+    .col.s12.m6.l6:first-child {
+        width: 100%;
+    }
+}
