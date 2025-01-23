@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Page</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo">FinGro</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/login">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Create a New Recipe</h2>
+        <form action="/recipe" method="POST">
+            <!-- Dish Name Field -->
+            <div class="input-field">
+                <input type="text" id="dish-name" name="dishName" required>
+                <label for="dish-name">Dish Name</label>
+            </div>
+
+            <div id="ingredients-container">
+                <!-- First row for ingredients and quantity -->
+                <div class="ingredient-row">
+                    <div class="input-field col s5">
+                        <select name="ingredientName[]" class="ingredient-name" required>
+                            <option value="" disabled selected>Choose Ingredient</option>
+                            <% ingredients.forEach(function(ingredient) { %>
+                                <option value="<%= ingredient._id %>"><%= ingredient.name %></option>
+                            <% }); %>
+                        </select>
+                        <label>Ingredient</label>
+                    </div>
+                    <div class="input-field col s5">
+                        <input type="text" name="quantity[]" required>
+                        <label for="quantity">Quantity</label>
+                    </div>
+                    <button type="button" class="btn add-ingredient-btn">Add Next Ingredient</button>
+                </div>
+            </div>
+
+            <button type="submit" class="btn pink">Save Recipe</button>
+        </form>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="page-footer pink">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 center-align">
+                    <p class="white-text">Copyright © FinGro</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        // Initialize the select dropdowns in Materialize
+        document.addEventListener('DOMContentLoaded', function() {
+            let elems = document.querySelectorAll('select');
+            M.FormSelect.init(elems);
+        });
+
+        // Add new ingredient row dynamically
+        document.querySelector('.add-ingredient-btn').addEventListener('click', function() {
+            const ingredientsContainer = document.getElementById('ingredients-container');
+            const newRow = document.createElement('div');
+            newRow.classList.add('ingredient-row');
+
+            newRow.innerHTML = `
+                <div class="input-field col s5">
+                    <select name="ingredientName[]" class="ingredient-name" required>
+                        <option value="" disabled selected>Choose Ingredient</option>
+                    </select>
+                    <label>Ingredient</label>
+                </div>
+                <div class="input-field col s5">
+                    <input type="text" name="quantity[]" required>
+                    <label for="quantity">Quantity</label>
+                </div>
+                <button type="button" class="btn remove-ingredient-btn">Remove</button>
+            `;
+
+            ingredientsContainer.appendChild(newRow);
+
+            // Re-initialize the select dropdown for the new row
+            M.FormSelect.init(newRow.querySelector('select'));
+
+            newRow.querySelector('.remove-ingredient-btn').addEventListener('click', function() {
+                ingredientsContainer.removeChild(newRow);
+            });
+        });
+    </script>
+</body>
+
+</html>

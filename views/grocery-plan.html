@@ -6,9 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grocery Planning</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/grocery.css">
 </head>
 
 <body>
+    <!-- Navigation Bar -->
     <nav>
         <div class="nav-wrapper">
             <a href="/" class="brand-logo">FinGro</a>
@@ -16,14 +19,46 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/about">About</a></li>
                 <li><a href="/contact">Contact</a></li>
+                <li><a href="/login">Login</a></li>
             </ul>
         </div>
     </nav>
 
     <div class="container">
         <h2>Grocery Planning Page</h2>
-        <p>Plan your grocery list here.</p>
+        <p>Choose an option below to get started.</p>
+
+        <!-- Cards for Add Recipe and Grocery Planner -->
+        <div class="row">
+            <div class="col s12 m6">
+                <a href="/recipe" class="card option-card add-recipe">
+                    <div class="card-content center-align">
+                        <i class="material-icons">add_circle</i>
+                        <span class="card-title">Add Recipe</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col s12 m6">
+                <a href="/grocery-planner.html" class="card option-card grocery-planner">
+                    <div class="card-content center-align">
+                        <i class="material-icons">store</i>
+                        <span class="card-title">Grocery Planner</span>
+                    </div>
+                </a>
+            </div>
+        </div>
     </div>
+
+    <!-- Footer Section -->
+    <footer class="page-footer pink">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 center-align">
+                    <p class="white-text">Copyright © FinGro</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
