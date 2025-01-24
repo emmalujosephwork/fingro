@@ -9,6 +9,9 @@ router.get('/', appController.homePage);
 router.get('/recipe', appController.recipePage); // Show recipe page with ingredients
 router.post('/recipe', appController.handleRecipe); // Handle recipe form submission
 
+// Add Ingredient Route
+router.post('/add-ingredient', appController.addIngredient); // Handle adding new ingredient
+
 // Other routes
 router.get('/grocery-plan', appController.groceryPlan);
 router.get('/money-manager', appController.moneyManager);
