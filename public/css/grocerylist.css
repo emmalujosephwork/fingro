@@ -1,0 +1,27 @@
+/* grocerylist.css */
+
+
+/* Layout and styling for the grocery list form */
+
+.container {
+    margin-top: 20px;
+}
+
+.day {
+    margin-bottom: 30px;
+}
+
+.meal-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.input-field {
+    width: 30%;
+}
+
+button.btn.pink {
+    background-color: #e91e63;
+    color: white;
+}

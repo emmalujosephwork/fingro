@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocery List</title>
+    <!-- Import Materialize CSS for layout styling -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <!-- Import Custom CSS -->
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/grocerylist.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo">FinGro</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/login">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Content Section for Grocery List -->
+    <div class="container">
+        <h2>Grocery List</h2>
+        <p>Create and manage your grocery shopping list here.</p>
+
+        <!-- Form to manage weekly meals -->
+        <form action="/grocerylist" method="POST">
+            <div id="weekly-meals">
+                <!-- Monday -->
+                <div class="day">
+                    <h5>Monday</h5>
+                    <div class="meal-row">
+                        <div class="input-field">
+                            <select name="mondayBreakfast" class="meal-dropdown" required>
+                                <option value="" disabled selected>Choose Breakfast</option>
+                                <% recipes.forEach(function(recipe) { %>
+                                    <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
+                                <% }); %>
+                            </select>
+                            <label for="mondayBreakfast">Breakfast</label>
+                        </div>
+                        <div class="input-field">
+                            <select name="mondayLunch" class="meal-dropdown" required>
+                                <option value="" disabled selected>Choose Lunch</option>
+                                <% recipes.forEach(function(recipe) { %>
+                                    <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
+                                <% }); %>
+                            </select>
+                            <label for="mondayLunch">Lunch</label>
+                        </div>
+                        <div class="input-field">
+                            <select name="mondayDinner" class="meal-dropdown" required>
+                                <option value="" disabled selected>Choose Dinner</option>
+                                <% recipes.forEach(function(recipe) { %>
+                                    <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
+                                <% }); %>
+                            </select>
+                            <label for="mondayDinner">Dinner</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tuesday -->
+                <div class="day">
+                    <h5>Tuesday</h5>
+                    <div class="meal-row">
+                        <div class="input-field">
+                            <select name="tuesdayBreakfast" class="meal-dropdown" required>
+                                <option value="" disabled selected>Choose Breakfast</option>
+                                <% recipes.forEach(function(recipe) { %>
+                                    <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
+                                <% }); %>
+                            </select>
+                            <label for="tuesdayBreakfast">Breakfast</label>
+                        </div>
+                        <div class="input-field">
+                            <select name="tuesdayLunch" class="meal-dropdown" required>
+                                <option value="" disabled selected>Choose Lunch</option>
+                                <% recipes.forEach(function(recipe) { %>
+                                    <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
+                                <% }); %>
+                            </select>
+                            <label for="tuesdayLunch">Lunch</label>
+                        </div>
+                        <div class="input-field">
+                            <select name="tuesdayDinner" class="meal-dropdown" required>
+                                <option value="" disabled selected>Choose Dinner</option>
+                                <% recipes.forEach(function(recipe) { %>
+                                    <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
+                                <% }); %>
+                            </select>
+                            <label for="tuesdayDinner">Dinner</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wednesday -->
+                <div class="day">
+                    <h5>Wednesday</h5>
+                    <div class="meal-row">
+                        <div class="input-field">
+                            <select name="wednesdayBreakfast" class="meal-dropdown" required>
+                                <option value="" disabled selected>Choose Breakfast</option>
+                                <% recipes.forEach(function(recipe) { %>
+                                    <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
+                                <% }); %>
+                            </select>
+                            <label for="wednesdayBreakfast">Breakfast</label>
+                        </div>
+                        <div class="input-field">
+                            <select name="wednesdayLunch" class="meal-dropdown" required>
+                                <option value="" disabled selected>Choose Lunch</option>
+                                <% recipes.forEach(function(recipe) { %>
+                                    <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
+                                <% }); %>
+                            </select>
+                            <label for="wednesdayLunch">Lunch</label>
+                        </div>
+                        <div class="input-field">
+                            <select name="wednesdayDinner" class="meal-dropdown" required>
+                                <option value="" disabled selected>Choose Dinner</option>
+                                <% recipes.forEach(function(recipe) { %>
+                                    <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
+                                <% }); %>
+                            </select>
+                            <label for="wednesdayDinner">Dinner</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thursday -->
+                <div class="day">
+                    <h5>Thursday</h5>
+                    <div class="meal-row">
+                        <div class="input-field">
+                            <select name="thursdayBreakfast" class="meal-dropdown" required>
+                                <option value="" disabled selected>Choose Breakfast</option>
+                                <% recipes.forEach(function(recipe) { %>
+                                    <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
+                                <% }); %>
+                            </select>
+                            <label for="thursdayBreakfast">Breakfast</label>
+                        </div>
+                        <div class="input-field">
+                            <select name="thursdayLunch" class="meal-dropdown" required>
+                                <option value="" disabled selected>Choose Lunch</option>
+                                <% recipes.forEach(function(recipe) { %>
+                                    <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
+                                <% }); %>
+                            </select>
+                            <label for="thursdayLunch">Lunch</label>
+                        </div>
+                        <div class="input-field">
+                            <select name="thursdayDinner" class="meal-dropdown" required>
+                                <option value="" disabled selected>Choose Dinner</option>
+                                <% recipes.forEach(function(recipe) { %>
+                                    <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
+                                <% }); %>
+                            </select>
+                            <label for="thursdayDinner">Dinner</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Friday -->
+                <div class="day">
+                    <h5>Friday</h5>
+                    <div class="meal-row">
+                        <div class="input-field">
+                            <select name="fridayBreakfast" class="meal-dropdown" required>
+                                <option value="" disabled selected>Choose Breakfast</option>
+                                <% recipes.forEach(function(recipe) { %>
+                                    <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
+                                <% }); %>
+                            </select>
+                            <label for="fridayBreakfast">Breakfast</label>
+                        </div>
+                        <div class="input-field">
+                            <select name="fridayLunch" class="meal-dropdown" required>
+                                <option value="" disabled selected>Choose Lunch</option>
+                                <% recipes.forEach(function(recipe) { %>
+                                    <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
+                                <% }); %>
+                            </select>
+                            <label for="fridayLunch">Lunch</label>
+                        </div>
+                        <div class="input-field">
+                            <select name="fridayDinner" class="meal-dropdown" required>
+                                <option value="" disabled selected>Choose Dinner</option>
+                                <% recipes.forEach(function(recipe) { %>
+                                    <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
+                                <% }); %>
+                            </select>
+                            <label for="fridayDinner">Dinner</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Saturday -->
+                <div class="day">
+                    <h5>Saturday</h5>
+                    <div class="meal-row">
+                        <div class="input-field">
+                            <select name="saturdayBreakfast" class="meal-dropdown" required>
+                                <option value="" disabled selected>Choose Breakfast</option>
+                                <% recipes.forEach(function(recipe) { %>
+                                    <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
+                                <% }); %>
+                            </select>
+                            <label for="saturdayBreakfast">Breakfast</label>
+                        </div>
+                        <div class="input-field">
+                            <select name="saturdayLunch" class="meal-dropdown" required>
+                                <option value="" disabled selected>Choose Lunch</option>
+                                <% recipes.forEach(function(recipe) { %>
+                                    <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
+                                <% }); %>
+                            </select>
+                            <label for="saturdayLunch">Lunch</label>
+                        </div>
+                        <div class="input-field">
+                            <select name="saturdayDinner" class="meal-dropdown" required>
+                                <option value="" disabled selected>Choose Dinner</option>
+                                <% recipes.forEach(function(recipe) { %>
+                                    <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
+                                <% }); %>
+                            </select>
+                            <label for="saturdayDinner">Dinner</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sunday -->
+                <div class="day">
+                    <h5>Sunday</h5>
+                    <div class="meal-row">
+                        <div class="input-field">
+                            <select name="sundayBreakfast" class="meal-dropdown" required>
+                                <option value="" disabled selected>Choose Breakfast</option>
+                                <% recipes.forEach(function(recipe) { %>
+                                    <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
+                                <% }); %>
+                            </select>
+                            <label for="sundayBreakfast">Breakfast</label>
+                        </div>
+                        <div class="input-field">
+                            <select name="sundayLunch" class="meal-dropdown" required>
+                                <option value="" disabled selected>Choose Lunch</option>
+                                <% recipes.forEach(function(recipe) { %>
+                                    <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
+                                <% }); %>
+                            </select>
+                            <label for="sundayLunch">Lunch</label>
+                        </div>
+                        <div class="input-field">
+                            <select name="sundayDinner" class="meal-dropdown" required>
+                                <option value="" disabled selected>Choose Dinner</option>
+                                <% recipes.forEach(function(recipe) { %>
+                                    <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
+                                <% }); %>
+                            </select>
+                            <label for="sundayDinner">Dinner</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn pink">Save Weekly Meals</button>
+        </form>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="page-footer pink">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 center-align">
+                    <p class="white-text">Copyright © FinGro</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Import Materialize JS for components -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        // Initialize the select dropdowns in Materialize
+        document.addEventListener('DOMContentLoaded', function() {
+            let elems = document.querySelectorAll('select');
+            M.FormSelect.init(elems);
+        });
+    </script>
+</body>
+
+</html>

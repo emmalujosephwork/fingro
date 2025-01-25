@@ -4,6 +4,7 @@ const Ingredient = require('../models/ingredient');
 const Recipe = require('../models/recipe');
 const Expense = require('../models/Expense');
 const Goal = require('../models/Goal');
+const bcrypt = require('bcryptjs'); // To hash passwords
 
 // Home Page
 exports.homePage = (req, res) => {
@@ -59,20 +60,34 @@ exports.signupPage = (req, res) => {
 exports.handleSignup = async(req, res) => {
     try {
         const { name, email, password, mobile } = req.body;
+
+        // Validation: Ensure all fields are filled
         if (!name || !email || !password || !mobile) {
             return res.status(400).json({ error: 'All fields are required.' });
         }
 
-        // Check if email already exists
+        // Check if email already exists in the database
         const existingUser = await User.findOne({ email });
         if (existingUser) {
             return res.status(400).json({ error: 'Email already exists.' });
         }
 
-        // Create a new user
-        const newUser = new User({ name, email, password, mobile });
+        // Hash the password before saving it
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+
+        // Create a new user object
+        const newUser = new User({
+            name,
+            email,
+            password: hashedPassword, // Store the hashed password
+            mobile
+        });
+
+        // Save the new user to the database
         await newUser.save();
 
+        // Send a success message after the user is created
         res.status(201).json({ message: 'User signed up successfully.' });
     } catch (err) {
         console.error(`Error during signup: ${err.message}`);
@@ -109,6 +124,18 @@ exports.recipePage = async(req, res) => {
     } catch (err) {
         console.error(err);
         res.status(500).send('Error fetching ingredients');
+    }
+};
+
+// Grocery List Page Route
+exports.groceryList = async(req, res) => {
+    try {
+        // Fetch all recipes to populate the dropdown
+        const recipes = await Recipe.find();
+        res.render('grocerylist', { recipes }); // Render 'grocerylist.html' with recipe data
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error fetching recipes');
     }
 };
 
