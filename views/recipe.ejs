@@ -24,6 +24,15 @@
     </nav>
 
     <div class="container">
+        <h2>Add New Ingredient</h2>
+        <form action="/add-ingredient" method="POST">
+            <div class="input-field">
+                <input type="text" id="ingredient" name="ingredient" required>
+                <label for="ingredient">Ingredient Name</label>
+            </div>
+            <button type="submit" class="btn pink">Add Ingredient</button>
+        </form>
+
         <h2>Create a New Recipe</h2>
         <form action="/recipe" method="POST">
             <!-- Dish Name Field -->
@@ -57,6 +66,7 @@
         </form>
     </div>
 
+    <!-- Footer Section -->
     <footer class="page-footer pink">
         <div class="container">
             <div class="row">
@@ -81,7 +91,6 @@
             const newRow = document.createElement('div');
             newRow.classList.add('ingredient-row');
 
-            // Ensure to include ingredients dropdown populated dynamically
             newRow.innerHTML = `
                 <div class="input-field col s5">
                     <select name="ingredientName[]" class="ingredient-name" required>

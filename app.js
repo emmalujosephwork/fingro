@@ -18,11 +18,20 @@ app.use(express.static(path.join(__dirname, 'public'))); // Serve static files f
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views')); // Optional: Customize views folder path if needed
 
-// Route setup
+// CORS Middleware (if needed for cross-origin requests)
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*'); // Allow all origins
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    next();
+});
+
+// Routes setup
 const appRoutes = require('./routes/appRoutes');
 app.use('/', appRoutes); // Use appRoutes for all incoming requests
 
 // Start the server
-app.listen(3000, () => {
-    console.log('Server running on http://localhost:3000');
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
 });
