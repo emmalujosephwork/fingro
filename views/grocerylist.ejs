@@ -39,7 +39,7 @@
                     <h5>Monday</h5>
                     <div class="meal-row">
                         <div class="input-field">
-                            <select name="mondayBreakfast" class="meal-dropdown" required>
+                            <select name="mondayBreakfast" id="mondayBreakfast" class="meal-dropdown" required>
                                 <option value="" disabled selected>Choose Breakfast</option>
                                 <% recipes.forEach(function(recipe) { %>
                                     <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
@@ -48,7 +48,7 @@
                             <label for="mondayBreakfast">Breakfast</label>
                         </div>
                         <div class="input-field">
-                            <select name="mondayLunch" class="meal-dropdown" required>
+                            <select name="mondayLunch" id="mondayLunch" class="meal-dropdown" required>
                                 <option value="" disabled selected>Choose Lunch</option>
                                 <% recipes.forEach(function(recipe) { %>
                                     <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
@@ -57,7 +57,7 @@
                             <label for="mondayLunch">Lunch</label>
                         </div>
                         <div class="input-field">
-                            <select name="mondayDinner" class="meal-dropdown" required>
+                            <select name="mondayDinner" id="mondayDinner" class="meal-dropdown" required>
                                 <option value="" disabled selected>Choose Dinner</option>
                                 <% recipes.forEach(function(recipe) { %>
                                     <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
@@ -73,7 +73,7 @@
                     <h5>Tuesday</h5>
                     <div class="meal-row">
                         <div class="input-field">
-                            <select name="tuesdayBreakfast" class="meal-dropdown" required>
+                            <select name="tuesdayBreakfast" id="tuesdayBreakfast" class="meal-dropdown" required>
                                 <option value="" disabled selected>Choose Breakfast</option>
                                 <% recipes.forEach(function(recipe) { %>
                                     <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
@@ -82,7 +82,7 @@
                             <label for="tuesdayBreakfast">Breakfast</label>
                         </div>
                         <div class="input-field">
-                            <select name="tuesdayLunch" class="meal-dropdown" required>
+                            <select name="tuesdayLunch" id="tuesdayLunch" class="meal-dropdown" required>
                                 <option value="" disabled selected>Choose Lunch</option>
                                 <% recipes.forEach(function(recipe) { %>
                                     <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
@@ -91,7 +91,7 @@
                             <label for="tuesdayLunch">Lunch</label>
                         </div>
                         <div class="input-field">
-                            <select name="tuesdayDinner" class="meal-dropdown" required>
+                            <select name="tuesdayDinner" id="tuesdayDinner" class="meal-dropdown" required>
                                 <option value="" disabled selected>Choose Dinner</option>
                                 <% recipes.forEach(function(recipe) { %>
                                     <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
@@ -107,7 +107,7 @@
                     <h5>Wednesday</h5>
                     <div class="meal-row">
                         <div class="input-field">
-                            <select name="wednesdayBreakfast" class="meal-dropdown" required>
+                            <select name="wednesdayBreakfast" id="wednesdayBreakfast" class="meal-dropdown" required>
                                 <option value="" disabled selected>Choose Breakfast</option>
                                 <% recipes.forEach(function(recipe) { %>
                                     <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
@@ -116,7 +116,7 @@
                             <label for="wednesdayBreakfast">Breakfast</label>
                         </div>
                         <div class="input-field">
-                            <select name="wednesdayLunch" class="meal-dropdown" required>
+                            <select name="wednesdayLunch" id="wednesdayLunch" class="meal-dropdown" required>
                                 <option value="" disabled selected>Choose Lunch</option>
                                 <% recipes.forEach(function(recipe) { %>
                                     <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
@@ -125,7 +125,7 @@
                             <label for="wednesdayLunch">Lunch</label>
                         </div>
                         <div class="input-field">
-                            <select name="wednesdayDinner" class="meal-dropdown" required>
+                            <select name="wednesdayDinner" id="wednesdayDinner" class="meal-dropdown" required>
                                 <option value="" disabled selected>Choose Dinner</option>
                                 <% recipes.forEach(function(recipe) { %>
                                     <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
@@ -141,7 +141,7 @@
                     <h5>Thursday</h5>
                     <div class="meal-row">
                         <div class="input-field">
-                            <select name="thursdayBreakfast" class="meal-dropdown" required>
+                            <select name="thursdayBreakfast" id="thursdayBreakfast" class="meal-dropdown" required>
                                 <option value="" disabled selected>Choose Breakfast</option>
                                 <% recipes.forEach(function(recipe) { %>
                                     <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
@@ -150,7 +150,7 @@
                             <label for="thursdayBreakfast">Breakfast</label>
                         </div>
                         <div class="input-field">
-                            <select name="thursdayLunch" class="meal-dropdown" required>
+                            <select name="thursdayLunch" id="thursdayLunch" class="meal-dropdown" required>
                                 <option value="" disabled selected>Choose Lunch</option>
                                 <% recipes.forEach(function(recipe) { %>
                                     <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
@@ -159,7 +159,7 @@
                             <label for="thursdayLunch">Lunch</label>
                         </div>
                         <div class="input-field">
-                            <select name="thursdayDinner" class="meal-dropdown" required>
+                            <select name="thursdayDinner" id="thursdayDinner" class="meal-dropdown" required>
                                 <option value="" disabled selected>Choose Dinner</option>
                                 <% recipes.forEach(function(recipe) { %>
                                     <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
@@ -175,7 +175,7 @@
                     <h5>Friday</h5>
                     <div class="meal-row">
                         <div class="input-field">
-                            <select name="fridayBreakfast" class="meal-dropdown" required>
+                            <select name="fridayBreakfast" id="fridayBreakfast" class="meal-dropdown" required>
                                 <option value="" disabled selected>Choose Breakfast</option>
                                 <% recipes.forEach(function(recipe) { %>
                                     <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
@@ -184,7 +184,7 @@
                             <label for="fridayBreakfast">Breakfast</label>
                         </div>
                         <div class="input-field">
-                            <select name="fridayLunch" class="meal-dropdown" required>
+                            <select name="fridayLunch" id="fridayLunch" class="meal-dropdown" required>
                                 <option value="" disabled selected>Choose Lunch</option>
                                 <% recipes.forEach(function(recipe) { %>
                                     <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
@@ -193,7 +193,7 @@
                             <label for="fridayLunch">Lunch</label>
                         </div>
                         <div class="input-field">
-                            <select name="fridayDinner" class="meal-dropdown" required>
+                            <select name="fridayDinner" id="fridayDinner" class="meal-dropdown" required>
                                 <option value="" disabled selected>Choose Dinner</option>
                                 <% recipes.forEach(function(recipe) { %>
                                     <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
@@ -209,7 +209,7 @@
                     <h5>Saturday</h5>
                     <div class="meal-row">
                         <div class="input-field">
-                            <select name="saturdayBreakfast" class="meal-dropdown" required>
+                            <select name="saturdayBreakfast" id="saturdayBreakfast" class="meal-dropdown" required>
                                 <option value="" disabled selected>Choose Breakfast</option>
                                 <% recipes.forEach(function(recipe) { %>
                                     <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
@@ -218,7 +218,7 @@
                             <label for="saturdayBreakfast">Breakfast</label>
                         </div>
                         <div class="input-field">
-                            <select name="saturdayLunch" class="meal-dropdown" required>
+                            <select name="saturdayLunch" id="saturdayLunch" class="meal-dropdown" required>
                                 <option value="" disabled selected>Choose Lunch</option>
                                 <% recipes.forEach(function(recipe) { %>
                                     <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
@@ -227,7 +227,7 @@
                             <label for="saturdayLunch">Lunch</label>
                         </div>
                         <div class="input-field">
-                            <select name="saturdayDinner" class="meal-dropdown" required>
+                            <select name="saturdayDinner" id="saturdayDinner" class="meal-dropdown" required>
                                 <option value="" disabled selected>Choose Dinner</option>
                                 <% recipes.forEach(function(recipe) { %>
                                     <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
@@ -243,7 +243,7 @@
                     <h5>Sunday</h5>
                     <div class="meal-row">
                         <div class="input-field">
-                            <select name="sundayBreakfast" class="meal-dropdown" required>
+                            <select name="sundayBreakfast" id="sundayBreakfast" class="meal-dropdown" required>
                                 <option value="" disabled selected>Choose Breakfast</option>
                                 <% recipes.forEach(function(recipe) { %>
                                     <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
@@ -252,7 +252,7 @@
                             <label for="sundayBreakfast">Breakfast</label>
                         </div>
                         <div class="input-field">
-                            <select name="sundayLunch" class="meal-dropdown" required>
+                            <select name="sundayLunch" id="sundayLunch" class="meal-dropdown" required>
                                 <option value="" disabled selected>Choose Lunch</option>
                                 <% recipes.forEach(function(recipe) { %>
                                     <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
@@ -261,7 +261,7 @@
                             <label for="sundayLunch">Lunch</label>
                         </div>
                         <div class="input-field">
-                            <select name="sundayDinner" class="meal-dropdown" required>
+                            <select name="sundayDinner" id="sundayDinner" class="meal-dropdown" required>
                                 <option value="" disabled selected>Choose Dinner</option>
                                 <% recipes.forEach(function(recipe) { %>
                                     <option value="<%= recipe._id %>"><%= recipe.dishName %></option>
@@ -292,7 +292,6 @@
     <!-- Import Materialize JS for components -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
-        // Initialize the select dropdowns in Materialize
         document.addEventListener('DOMContentLoaded', function() {
             let elems = document.querySelectorAll('select');
             M.FormSelect.init(elems);

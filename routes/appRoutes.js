@@ -16,7 +16,12 @@ router.post('/add-ingredient', appController.addIngredient); // Handle adding ne
 
 // Other routes
 router.get('/grocery-plan', appController.groceryPlan);
+// Grocery List Page Route (GET)
 router.get('/grocerylist', appController.groceryList);
+
+// Save Grocery List (POST)
+router.post('/grocerylist', appController.saveGroceryList); // Save the weekly grocery list
+
 router.get('/money-manager', appController.moneyManager);
 router.get('/login', appController.loginPage);
 router.get('/signup', appController.signupPage); // Show the sign-up page
@@ -142,6 +147,7 @@ router.delete('/api/goals/:id', async(req, res) => {
         res.status(500).json({ error: err.message });
     }
 });
+
 
 // --- Error Handling Routes ---
 
