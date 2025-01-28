@@ -7,29 +7,32 @@ const Goal = require('../models/Goal'); // Goal Model
 // Home Route
 router.get('/', appController.homePage);
 
-// Grocery Planning Route
+// Recipe Page Route (Render recipe.ejs with ingredients)
+router.get('/recipe', appController.recipePage); // Show recipe page with ingredients
+router.post('/recipe', appController.handleRecipe); // Handle recipe form submission
+
+// Add Ingredient Route
+router.post('/add-ingredient', appController.addIngredient); // Handle adding new ingredient
+
+// Other routes
 router.get('/grocery-plan', appController.groceryPlan);
+// Grocery List Page Route (GET)
+router.get('/grocerylist', appController.groceryList);
 
-// Money Manager Route
+// Save Grocery List (POST)
+router.post('/grocerylist', appController.saveGroceryList); // Save the weekly grocery list
+
 router.get('/money-manager', appController.moneyManager);
-
-// Login Route
 router.get('/login', appController.loginPage);
-
-// Signup Route
 router.get('/signup', appController.signupPage); // Show the sign-up page
 router.post('/signup', appController.handleSignup); // Handle form submission
-
-// About Page Route
 router.get('/about', appController.aboutPage);
-
-// Contact Us Page Route
 router.get('/contact', appController.contactPage);
 
 // --- Tracker API Routes ---
 
 // Add Expense
-router.post('/api/expenses', async (req, res) => {
+router.post('/api/expenses', async(req, res) => {
     try {
         const { description, amount, category } = req.body;
         if (!description || !amount || !category) {
@@ -47,7 +50,7 @@ router.post('/api/expenses', async (req, res) => {
 });
 
 // Get All Expenses
-router.get('/api/expenses', async (req, res) => {
+router.get('/api/expenses', async(req, res) => {
     try {
         const expenses = await Expense.find();
         console.log('Expenses retrieved:', expenses);
@@ -59,7 +62,7 @@ router.get('/api/expenses', async (req, res) => {
 });
 
 // Add Savings Goal
-router.post('/api/goals', async (req, res) => {
+router.post('/api/goals', async(req, res) => {
     try {
         const { goalName, targetAmount, dueDate } = req.body;
         if (!goalName || !targetAmount) {
@@ -77,7 +80,7 @@ router.post('/api/goals', async (req, res) => {
 });
 
 // Get All Goals
-router.get('/api/goals', async (req, res) => {
+router.get('/api/goals', async(req, res) => {
     try {
         const goals = await Goal.find();
         console.log('Goals retrieved:', goals);
@@ -89,7 +92,7 @@ router.get('/api/goals', async (req, res) => {
 });
 
 // Get a Specific Goal or Expense by ID
-router.get('/api/goals/:id', async (req, res) => {
+router.get('/api/goals/:id', async(req, res) => {
     try {
         const goal = await Goal.findById(req.params.id);
         if (!goal) {
@@ -102,7 +105,7 @@ router.get('/api/goals/:id', async (req, res) => {
     }
 });
 
-router.get('/api/expenses/:id', async (req, res) => {
+router.get('/api/expenses/:id', async(req, res) => {
     try {
         const expense = await Expense.findById(req.params.id);
         if (!expense) {
@@ -116,7 +119,7 @@ router.get('/api/expenses/:id', async (req, res) => {
 });
 
 // Delete Expense
-router.delete('/api/expenses/:id', async (req, res) => {
+router.delete('/api/expenses/:id', async(req, res) => {
     try {
         const deletedExpense = await Expense.findByIdAndDelete(req.params.id);
         if (!deletedExpense) {
@@ -131,7 +134,7 @@ router.delete('/api/expenses/:id', async (req, res) => {
 });
 
 // Delete Goal
-router.delete('/api/goals/:id', async (req, res) => {
+router.delete('/api/goals/:id', async(req, res) => {
     try {
         const deletedGoal = await Goal.findByIdAndDelete(req.params.id);
         if (!deletedGoal) {
@@ -144,6 +147,7 @@ router.delete('/api/goals/:id', async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 });
+
 
 // --- Error Handling Routes ---
 

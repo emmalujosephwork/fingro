@@ -1,0 +1,72 @@
+/* Basic card styling */
+
+.option-card {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+
+/* Hover effect for the cards */
+
+.option-card:hover {
+    background-color: #FF4081;
+    color: white;
+}
+
+
+/* Specific styling for 'Add Recipe' card */
+
+.add-recipe {
+    background-color: #B3E5FC;
+}
+
+.add-recipe:hover i {
+    color: white;
+}
+
+
+/* Specific styling for 'Grocery Planner' card */
+
+.grocery-planner {
+    background-color: #FFEB3B;
+}
+
+.grocery-planner:hover i {
+    color: white;
+}
+
+
+/* Styling for icons inside the cards */
+
+.option-card i {
+    font-size: 4rem;
+    color: #000;
+}
+
+
+/* Card title styling */
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+
+/* Styling for mobile screens */
+
+@media only screen and (max-width: 768px) {
+    .option-card {
+        height: 150px;
+    }
+    .option-card i {
+        font-size: 3rem;
+    }
+    .card-title {
+        font-size: 1.2rem;
+    }
+}

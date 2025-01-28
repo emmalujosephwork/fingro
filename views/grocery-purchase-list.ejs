@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocery Purchase List</title>
+    <!-- Import Materialize CSS for layout styling -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <!-- Import Custom CSS -->
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/grocerypurchaselist.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo">FinGro</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/login">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Content Section for Grocery List -->
+    <div class="container">
+        <h2>Your Grocery Purchase List</h2>
+        <p>Create and manage your grocery shopping list here.</p>
+        <table class="highlight">
+            <thead>
+                <tr>
+                    <th>Ingredient Name</th>
+                    <th>Total Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% ingredients.forEach(function(ingredient) { %>
+                    <tr>
+                        <td>
+                            <%= ingredient.ingredientName %>
+                        </td>
+                        <td>
+                            <%= ingredient.totalQuantity %>
+                        </td>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
+        <!-- Footer Section -->
+        <footer class="page-footer pink">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <p class="white-text">Copyright © FinGro</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+
+</html>
