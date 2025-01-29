@@ -30,6 +30,7 @@
     <div class="container">
         <h2>Your Grocery Purchase List</h2>
         <p>Create and manage your grocery shopping list here.</p>
+
         <table class="highlight">
             <thead>
                 <tr>
@@ -38,18 +39,25 @@
                 </tr>
             </thead>
             <tbody>
-                <% ingredients.forEach(function(ingredient) { %>
-                    <tr>
-                        <td>
-                            <%= ingredient.ingredientName %>
-                        </td>
-                        <td>
-                            <%= ingredient.totalQuantity %>
-                        </td>
-                    </tr>
-                    <% }); %>
+                <% if (ingredients.length > 0) { %>
+                    <% ingredients.forEach(function(ingredient) { %>
+                        <tr>
+                            <td>
+                                <%= ingredient.ingredientName %>
+                            </td>
+                            <td>
+                                <%= ingredient.totalQuantity %>
+                            </td>
+                        </tr>
+                        <% }); %>
+                            <% } else { %>
+                                <tr>
+                                    <td colspan="2" class="center-align">No grocery items found.</td>
+                                </tr>
+                                <% } %>
             </tbody>
         </table>
+
         <!-- Footer Section -->
         <footer class="page-footer pink">
             <div class="container">
@@ -60,7 +68,11 @@
                 </div>
             </div>
         </footer>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    </div>
+    <!-- End container -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 
 </html>
