@@ -3,6 +3,8 @@ const router = express.Router();
 const appController = require('../controllers/appController'); // Controller for routes
 const Expense = require('../models/Expense'); // Expense Model
 const Goal = require('../models/Goal'); // Goal Model
+const GroceryList = require('../models/grocerylist'); // Adjust the path based on your folder structure
+
 
 // Home Route
 router.get('/', appController.homePage);
@@ -145,6 +147,23 @@ router.delete('/api/goals/:id', async(req, res) => {
     } catch (err) {
         console.error('Error deleting goal:', err.message);
         res.status(500).json({ error: err.message });
+    }
+});
+
+
+// Route to view the grocery purchase list
+router.get('/grocery-purchase-list', async(req, res) => {
+    try {
+        const groceryList = await GroceryList.find().sort({ createdAt: -1 }).limit(1); // Fetch the latest grocery list
+        if (groceryList.length) {
+            // Render the grocery-purchase-list.ejs template and pass the ingredients
+            res.render('grocery-purchase-list', { ingredients: groceryList[0].ingredients });
+        } else {
+            res.status(404).send('Grocery list not found');
+        }
+    } catch (err) {
+        console.error('Error fetching grocery purchase list:', err);
+        res.status(500).send('Error fetching grocery purchase list');
     }
 });
 

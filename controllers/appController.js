@@ -4,8 +4,10 @@ const Ingredient = require('../models/ingredient');
 const Recipe = require('../models/recipe');
 const Expense = require('../models/Expense');
 const Goal = require('../models/Goal');
+const GroceryList = require('../models/grocerylist');
 const bcrypt = require('bcryptjs'); // To hash passwords
 const mongoose = require('mongoose');
+
 
 // Home Page
 exports.homePage = (req, res) => {
@@ -225,6 +227,7 @@ exports.groceryList = async(req, res) => {
 // Save Grocery Purchase List (POST)
 exports.saveGroceryList = async(req, res) => {
     try {
+        // Collect selected recipe IDs from the form
         const selectedRecipeIds = [
             req.body.mondayBreakfast, req.body.mondayLunch, req.body.mondayDinner,
             req.body.tuesdayBreakfast, req.body.tuesdayLunch, req.body.tuesdayDinner,
@@ -235,18 +238,24 @@ exports.saveGroceryList = async(req, res) => {
             req.body.sundayBreakfast, req.body.sundayLunch, req.body.sundayDinner
         ];
 
+        // Filter out invalid or empty recipe IDs
         const validRecipeIds = selectedRecipeIds.filter(id => id && mongoose.Types.ObjectId.isValid(id));
 
+        // Initialize an array to store all ingredients and their quantities
         const allIngredients = [];
+
+        // Loop through the selected recipe IDs and gather the ingredients
         for (const recipeId of validRecipeIds) {
             const recipe = await Recipe.findById(recipeId);
             if (recipe) {
+                // Loop through each ingredient in the recipe and push them into the allIngredients array
                 for (const [ingredientId, quantity] of recipe.ingredients) {
                     allIngredients.push({ ingredientId, quantity: parseInt(quantity) });
                 }
             }
         }
 
+        // Group and sum the quantities for each ingredient
         const summedIngredients = allIngredients.reduce((acc, { ingredientId, quantity }) => {
             if (acc[ingredientId]) {
                 acc[ingredientId].quantity += quantity;
@@ -256,28 +265,60 @@ exports.saveGroceryList = async(req, res) => {
             return acc;
         }, {});
 
+        // Extract ingredient IDs to fetch their names later
         const ingredientIds = Object.keys(summedIngredients);
+
+        // Fetch the ingredient details from the database
         const ingredients = await Ingredient.find({ '_id': { $in: ingredientIds } });
+
+        // Create a mapping of ingredient ID to ingredient name
         const ingredientNames = ingredients.reduce((acc, ingredient) => {
             acc[ingredient._id.toString()] = ingredient.name;
             return acc;
         }, {});
 
+        // Prepare the final list of ingredients with their names and total quantities
         const result = Object.values(summedIngredients).map(ingredient => ({
             ingredientId: ingredient.ingredientId,
             ingredientName: ingredientNames[ingredient.ingredientId] || 'Unknown Ingredient',
             totalQuantity: ingredient.quantity
         }));
 
-        // Render the updated grocery purchase list
-        res.render('grocery-purchase-list', { ingredients: result });
+        // Create a new grocery list to save in the database
+        const newGroceryList = new GroceryList({
+            mondayBreakfast: req.body.mondayBreakfast,
+            mondayLunch: req.body.mondayLunch,
+            mondayDinner: req.body.mondayDinner,
+            tuesdayBreakfast: req.body.tuesdayBreakfast,
+            tuesdayLunch: req.body.tuesdayLunch,
+            tuesdayDinner: req.body.tuesdayDinner,
+            wednesdayBreakfast: req.body.wednesdayBreakfast,
+            wednesdayLunch: req.body.wednesdayLunch,
+            wednesdayDinner: req.body.wednesdayDinner,
+            thursdayBreakfast: req.body.thursdayBreakfast,
+            thursdayLunch: req.body.thursdayLunch,
+            thursdayDinner: req.body.thursdayDinner,
+            fridayBreakfast: req.body.fridayBreakfast,
+            fridayLunch: req.body.fridayLunch,
+            fridayDinner: req.body.fridayDinner,
+            saturdayBreakfast: req.body.saturdayBreakfast,
+            saturdayLunch: req.body.saturdayLunch,
+            saturdayDinner: req.body.saturdayDinner,
+            sundayBreakfast: req.body.sundayBreakfast,
+            sundayLunch: req.body.sundayLunch,
+            sundayDinner: req.body.sundayDinner,
+            ingredients: result
+        });
+
+        await newGroceryList.save();
+
+        // Redirect to the grocery-purchase-list page after saving the list
+        res.redirect('/grocery-purchase-list');
     } catch (err) {
         console.error('Error saving grocery purchase list:', err.message);
         res.status(500).json({ error: err.message });
     }
 };
-
-
 
 
 
