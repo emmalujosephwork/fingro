@@ -6,13 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - My Webpage</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 
 <body>
 
     <!-- Navigation Bar -->
-    <nav>
+    
+    <nav class="navbar-custom">
         <div class="nav-wrapper">
             <a href="/" class="brand-logo">FinGro</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -28,6 +30,7 @@
     <!-- Parallax Section with Headings -->
     <div class="parallax-container">
         <div class="parallax"><img src="/images/parallax-background.jpg" alt="Parallax Background"></div>
+        <div class="overlay"></div>
         <div class="content">
             <h1 class="header pink-text text-lighten-2">Fingro</h1>
             <p class="light">Welcome to FINGRO
@@ -42,35 +45,60 @@
         <div class="row center-align">
             <!-- Feature Card 1 -->
             <div class="col s12">
-                <div class="card">
+                <div class="card z-depth-5">
+                    <div class="card-image">
+                        <img src="images/p2.jpeg">
+                        <span class="card-title"> Feature One</span>
+                      </div>
                     <div class="card-content">
-                        <span class="card-title"><i class="material-icons">star</i> Feature One</span>
                         <p>Lorem consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                     </div>
                     <div class="card-action">
-                        <a href="/money-manager" class="btn pink">Expense More</a>
+                        <a href="/money-manager" class="btn pink centered-btn">Expense More</a>
                     </div>
                 </div>
             </div>
 
             <!-- Feature Card 2 -->
             <div class="col s12">
-                <div class="card">
+                <div class="card z-depth-5">
+                    <div class="card-image">
+                        <img src="images/p3.jpeg">
+                        <span class="card-title"> Feature two</span>
+                      </div>
                     <div class="card-content">
-                        <span class="card-title"><i class="material-icons">rss</i> Feature Two</span>
-                        <p>Lorem ipsum dolor sit amet, cc cc ccc vv vv vv vv bb bbb bb bb b consectetur adipiscing elit,</p>
+                        
+                        <p>Lorem consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.,</p>
                     </div>
                     <div class="card-action">
-                        <a href="/grocery-plan" class="btn pink">Grocery More</a>
+                        <a href="/grocery-plan" class="btn pink centered-btn">Grocery More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature Card 3 -->
+            <div class="col s12 ">
+                <div class="card z-depth-5">
+                    <div class="card-image">
+                        <img src="images/p4.jpg">
+                        <span class="card-title"> Feature three</span>
+                      </div>
+                    <div class="card-content">
+                        <p>Lorem consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="/grocery-plan" class="btn pink centered-btn">Grocery More</a>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 
     <!-- About Section Parallax -->
     <div class="parallax-container">
         <div class="parallax"><img src="/images/about.jpg" alt="About Us"></div>
+        <div class="overlay"></div>
         <div class="content">
             <h1 class="header pink-text text-lighten-2">About Us</h1>
             <p class="light">At FinGro, we're revolutionizing how you manage your grocery planning and finances through our smart, integrated platform that takes the stress out of meal planning and expense tracking.</p>
@@ -79,7 +107,7 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="page-footer pink">
+    <footer class="page-footer page-footer-custom">
         <div class="container">
             <div class="row">
                 <div class="col s12 center-align">
@@ -98,6 +126,7 @@
             let elems = document.querySelectorAll('.parallax');
             M.Parallax.init(elems);
         });
+        
     </script>
 </body>
 
