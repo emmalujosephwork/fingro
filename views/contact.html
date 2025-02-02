@@ -8,12 +8,13 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
     <!-- Link to contact-specific styles.css -->
     <link rel="stylesheet" href="/css/contact.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 
 <body>
 
     <!-- Navigation Bar -->
-    <nav>
+    <nav class="navbar-custom">
         <div class="nav-wrapper">
             <a href="/" class="brand-logo">FinGro</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -21,16 +22,24 @@
                 <li><a href="/about">About</a></li>
                 <li><a href="/contact">Contact</a></li>
                 <li><a href="/login">Login</a></li>
+                <!-- Added login link here -->
             </ul>
         </div>
     </nav>
 
+     <!-- Parallax Section -->
+     <div class="parallax-container">
+        <div class="parallax"><img src="/images/parallax-background.jpg" alt="Background"></div>
+        <div class="overlay"></div>
+    </div>
+
+
     <!-- Main Content Section -->
-    <div class="container">
+    <div class="container" style="margin-bottom: 20px;">
         <div class="row">
             <!-- Contact Form -->
-            <div class="col s12 m6">
-                <div class="card">
+            <div class="col s12 m6 ">
+                <div class="card z-depth-4">
                     <div class="card-content">
                         <h5>Send Us a Message</h5>
                         <form action="#" method="POST">
@@ -47,7 +56,7 @@
                                 <label for="message">Your Message</label>
                             </div>
                             <div class="input-field center-align">
-                                <button type="submit" class="btn pink">Send Message</button>
+                                <button type="submit" class="btn pink centered-btn">Send Message</button>
                             </div>
                         </form>
                     </div>
@@ -55,13 +64,16 @@
             </div>
 
             <!-- Contact Details -->
-            <div class="col s12 m6">
-                <div class="card">
+            <div class="col s12 m6" >
+                <div class="card z-depth-4">
                     <div class="card-content">
                         <h5>Contact Details</h5>
-                        <p><i class="material-icons">📧</i> Email: support@fingro.com</p>
-                        <p><i class="material-icons">📱</i> Phone: +61 123 456 789</p>
-                        <p><i class="material-icons">🌍</i> Address: Somewhere on Planet Earth</p>
+                        <span class="material-icons">📧</span>
+                        <p > Email  : support@fingro.com</p>
+                        <span class="material-icons">📱 </span>
+                        <p > Phone  :  +61 123 456 789</p>
+                        <span class="material-icons">🌍</span>
+                        <p> Addressv: Somewhere on Planet Earth</p>
                     </div>
                 </div>
             </div>
