@@ -312,10 +312,47 @@ exports.saveGroceryList = async(req, res) => {
 
         await newGroceryList.save();
 
-        // Redirect to the grocery-purchase-list page after saving the list
-        res.redirect('/grocery-purchase-list');
+        // Fetch the newly saved grocery list from the database
+        const savedGroceryList = await GroceryList.findById(newGroceryList._id).populate('ingredients.ingredientId');
+
+        // Pass the grocery list to the view
+        res.render('grocery-purchase-list', { groceryList: savedGroceryList });
     } catch (err) {
         console.error('Error saving grocery purchase list:', err.message);
+        res.status(500).json({ error: err.message });
+    }
+};
+
+
+exports.updateGroceryList = async(req, res) => {
+    try {
+        const peopleCount = parseInt(req.body.peopleCount); // Get the number of people from the form
+        const groceryListId = req.body.groceryListId; // Get the grocery list ID
+
+        // Ensure valid people count
+        if (isNaN(peopleCount) || peopleCount < 1) {
+            return res.status(400).json({ error: 'Invalid number of people.' });
+        }
+
+        // Find the grocery list by ID
+        const groceryList = await GroceryList.findById(groceryListId);
+
+        if (!groceryList) {
+            return res.status(404).json({ error: 'Grocery list not found.' });
+        }
+
+        // Loop through ingredients and multiply their quantity by people count
+        groceryList.ingredients.forEach(ingredient => {
+            ingredient.totalQuantity *= peopleCount; // Multiply each ingredient's quantity by people count
+        });
+
+        // Save the updated grocery list
+        await groceryList.save();
+
+        // Redirect to the grocery purchase list page after saving
+        res.redirect('/grocery-purchase-list');
+    } catch (err) {
+        console.error('Error updating grocery purchase list:', err.message);
         res.status(500).json({ error: err.message });
     }
 };

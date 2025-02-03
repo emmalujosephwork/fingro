@@ -154,18 +154,23 @@ router.delete('/api/goals/:id', async(req, res) => {
 // Route to view the grocery purchase list
 router.get('/grocery-purchase-list', async(req, res) => {
     try {
-        const groceryList = await GroceryList.find().sort({ createdAt: -1 }).limit(1); // Fetch the latest grocery list
-        if (groceryList.length) {
-            // Render the grocery-purchase-list.ejs template and pass the ingredients
-            res.render('grocery-purchase-list', { ingredients: groceryList[0].ingredients });
+        // Assuming you want to fetch the most recent grocery list
+        const groceryList = await GroceryList.find().sort({ createdAt: -1 }).limit(1);
+
+        if (groceryList.length > 0) {
+            // Pass the grocery list to the view
+            res.render('grocery-purchase-list', { groceryList: groceryList[0] });
         } else {
-            res.status(404).send('Grocery list not found');
+            res.status(404).send('No grocery list found');
         }
     } catch (err) {
-        console.error('Error fetching grocery purchase list:', err);
-        res.status(500).send('Error fetching grocery purchase list');
+        console.error('Error fetching grocery list:', err);
+        res.status(500).send('Error fetching grocery list');
     }
 });
+
+router.post('/update-grocery-list', appController.updateGroceryList); // Handles the form submission to update the grocery list
+
 
 
 // --- Error Handling Routes ---
