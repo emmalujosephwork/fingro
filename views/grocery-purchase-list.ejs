@@ -61,16 +61,16 @@
                                 <%= ingredient.ingredientName %>
                             </td>
                             <td>
-                                <!-- Display the total quantity, read-only -->
-                                <input type="number" class="ingredientQuantity" value="<%= ingredient.totalQuantity %>" min="1" step="any" readonly>
+                                <!-- Display the updated total quantity -->
+                                <%= ingredient.totalQuantity %>
                             </td>
                         </tr>
-                    <% }); %>
-                <% } else { %>
-                    <tr>
-                        <td colspan="2" class="center-align">No grocery items found.</td>
-                    </tr>
-                <% } %>
+                        <% }); %>
+                            <% } else { %>
+                                <tr>
+                                    <td colspan="2" class="center-align">No grocery items found.</td>
+                                </tr>
+                                <% } %>
             </tbody>
         </table>
     </div>

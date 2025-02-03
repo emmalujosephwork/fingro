@@ -349,8 +349,11 @@ exports.updateGroceryList = async(req, res) => {
         // Save the updated grocery list
         await groceryList.save();
 
-        // Redirect to the grocery purchase list page after saving
-        res.redirect('/grocery-purchase-list');
+        // Fetch the updated grocery list to pass to the EJS view
+        const updatedGroceryList = await GroceryList.findById(groceryListId);
+
+        // Redirect to the grocery purchase list page with the updated values
+        res.render('grocery-purchase-list', { groceryList: updatedGroceryList });
     } catch (err) {
         console.error('Error updating grocery purchase list:', err.message);
         res.status(500).json({ error: err.message });
