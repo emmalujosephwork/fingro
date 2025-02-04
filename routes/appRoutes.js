@@ -4,6 +4,7 @@ const groceryController = require('../controllers/groceryController');
 const homeController = require('../controllers/homeController');
 const signupController = require('../controllers/signupController'); 
 const expenseController = require('../controllers/expenseController'); 
+const loginController = require('../controllers/loginController');
 const recipeController = require('../controllers/recipeController');  // Controller for routes
 const Expense = require('../models/Expense'); // Expense Model
 const Goal = require('../models/Goal'); // Goal Model
@@ -12,6 +13,17 @@ const GroceryList = require('../models/grocerylist'); // Adjust the path based o
 
 // Home Route
 router.get('/', homeController.homePage);
+
+
+
+// Login Routes
+router.get('/login', homeController.loginPage);
+router.post('/login', loginController.handleLogin);
+router.get('/logout', loginController.handleLogout);
+
+// Signup Routes
+router.get('/signup', signupController.signupPage);
+router.post('/signup', signupController.handleSignup);
 
 // Recipe Page Route (Render recipe.ejs with ingredients)
 router.get('/recipe', recipeController.recipePage); // Show recipe page with ingredients
