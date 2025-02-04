@@ -2,11 +2,14 @@ const Recipe = require('../models/recipe'); // Recipe model for storing recipes
 const Ingredient = require('../models/ingredient'); // Ingredient model for fetching and saving ingredients
 
 // Recipe Page Route - Renders recipe page with ingredients
-exports.recipePage = async(req, res) => {
+exports.recipePage = async (req, res) => {
     try {
         // Fetch all ingredients from the database to populate the dropdown
         const ingredients = await Ingredient.find();
-        res.render('recipe', { ingredients }); // Render 'recipe.html' with ingredients data
+        res.render('recipe', { 
+            username: req.session.username || null, // Pass username
+            ingredients // Pass ingredients data
+        });
     } catch (err) {
         console.error(err);
         res.status(500).send('Error fetching ingredients');

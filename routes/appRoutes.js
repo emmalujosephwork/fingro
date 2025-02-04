@@ -43,6 +43,7 @@ router.post('/grocerylist', groceryController.saveGroceryList); // Save the week
 // Other Routes
 router.get('/about', homeController.aboutPage);
 router.get('/contact', homeController.contactPage);
+router.post('/update-grocery-list', groceryController.updateGroceryList); 
 
 // --- Tracker API Routes ---
 
