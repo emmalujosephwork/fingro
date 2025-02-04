@@ -136,6 +136,10 @@ router.get('/edit-ingredients/:id', authenticationMiddleware, recipeController.e
 // Controller for handling the save after editing
 router.post('/edit-ingredients/:id', authenticationMiddleware, recipeController.updateRecipe);
 
+// In your routes file (e.g., routes.js)
+router.get('/displaygrocerylist', authenticationMiddleware, groceryController.displayGroceryList);
+
+
 // Error Handling Routes
 router.use((req, res) => {
     res.status(404).json({ error: 'Route not found' });
