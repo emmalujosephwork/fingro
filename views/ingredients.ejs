@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingredients</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/ingredients.css">
+</head>
+
+<body>
+
+    <!-- Custom Navbar -->
+    <nav class="navbar-custom">
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo">FinGro</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+
+                <% if (username) { %>
+                    <li><span class="welcome-text">Welcome, <%= username %>!</span></li>
+                    <li><a href="/logout">Logout</a></li>
+                    <% } else { %>
+                        <li><a href="/login">Login</a></li>
+                        <% } %>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Ingredients Table -->
+    <div class="container" style="margin-top: 120px;">
+
+        <h2>Add New Ingredient</h2>
+        <form action="/add-ingredient" method="POST">
+            <div class="input-field">
+                <input type="text" id="ingredient" name="ingredient" required>
+                <label for="ingredient">Ingredient Name</label>
+            </div>
+            <button type="submit" class="btn pink edit-btn">Add Ingredient</button>
+        </form>
+
+        <h4>Ingredients</h4>
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% ingredients.forEach(function(ingredient) { %>
+                    <tr>
+                        <td>
+                            <input type="text" id="ingredientName<%= ingredient._id %>" value="<%= ingredient.name %>" disabled>
+                        </td>
+                        <td>
+                            <%= ingredient.description %>
+                        </td>
+                        <td>
+                            <button class="btn pink edit-btn" data-id="<%= ingredient._id %>">Edit</button>
+                            <button class="btn green save-btn" style="display:none;" data-id="<%= ingredient._id %>">Save</button>
+                        </td>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="page-footer pink">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 center-align">
+                    <p class="white-text">Copyright © FinGro</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Include Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            M.AutoInit();
+        });
+
+        // Handle Edit and Save Actions
+        const editButtons = document.querySelectorAll('.edit-btn');
+        const saveButtons = document.querySelectorAll('.save-btn');
+
+        editButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const ingredientId = this.getAttribute('data-id');
+                const ingredientNameInput = document.getElementById('ingredientName' + ingredientId);
+
+                // Enable the input field and show the Save button
+                ingredientNameInput.disabled = false;
+                this.style.display = 'none';
+                document.querySelector('.save-btn[data-id="' + ingredientId + '"]').style.display = 'inline-block';
+            });
+        });
+
+        saveButtons.forEach(button => {
+            button.addEventListener('click', async function() {
+                const ingredientId = this.getAttribute('data-id');
+                const ingredientNameInput = document.getElementById('ingredientName' + ingredientId);
+                const updatedName = ingredientNameInput.value;
+
+                // Send an update request to the server
+                try {
+                    const response = await fetch('/update-ingredient', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            ingredientId,
+                            updatedName
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        // Disable the input field and show the Edit button again
+                        ingredientNameInput.disabled = true;
+                        this.style.display = 'none';
+                        document.querySelector('.edit-btn[data-id="' + ingredientId + '"]').style.display = 'inline-block';
+                    } else {
+                        alert(data.error);
+                    }
+                } catch (error) {
+                    console.error('Error updating ingredient:', error);
+                    alert('Failed to update ingredient');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

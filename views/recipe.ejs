@@ -18,26 +18,18 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/about">About</a></li>
                 <li><a href="/contact">Contact</a></li>
-    
+
                 <% if (username) { %>
                     <li><span class="welcome-text">Welcome, <%= username %>!</span></li>
                     <li><a href="/logout">Logout</a></li>
-                <% } else { %>
-                    <li><a href="/login">Login</a></li>
-                <% } %>
+                    <% } else { %>
+                        <li><a href="/login">Login</a></li>
+                        <% } %>
             </ul>
         </div>
     </nav>
 
     <div class="container">
-        <h2>Add New Ingredient</h2>
-        <form action="/add-ingredient" method="POST">
-            <div class="input-field">
-                <input type="text" id="ingredient" name="ingredient" required>
-                <label for="ingredient">Ingredient Name</label>
-            </div>
-            <button type="submit" class="btn pink">Add Ingredient</button>
-        </form>
 
         <h2>Create a New Recipe</h2>
         <form action="/recipe" method="POST">
