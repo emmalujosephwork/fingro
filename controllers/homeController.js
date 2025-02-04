@@ -5,29 +5,21 @@ exports.homePage = (req, res) => {
 };
 
 exports.loginPage = (req, res) => {
-    res.render('login', { username: req.session.username || null, error: null });
+    res.render('login', { username: req.session.username || null});
 };
 
 
-// Grocery Planning Page
+// Grocery Planning Page (Using EJS)
 exports.groceryPlan = (req, res) => {
-    res.sendFile('grocery-plan.html', { root: './views' }, (err) => {
-        if (err) {
-            console.error(`Error serving grocery-plan.html: ${err.message}`);
-            res.status(500).send('Error loading the Grocery Planning Page.');
-        }
-    });
+    res.render('grocery-plan', { username: req.session.username || null });
 };
 
-// Money Manager Page
+
+// Money Manager Page (Using EJS)
 exports.moneyManager = (req, res) => {
-    res.sendFile('money-manager.html', { root: './views' }, (err) => {
-        if (err) {
-            console.error(`Error serving money-manager.html: ${err.message}`);
-            res.status(500).send('Error loading the Money Manager Page.');
-        }
-    });
+    res.render('money-manager', { username: req.session.username || null });
 };
+
 
 // // Login Page
 // exports.loginPage = (req, res) => {
@@ -40,25 +32,17 @@ exports.moneyManager = (req, res) => {
 // };
 
 
-// About Page
+// About Page (Using EJS)
 exports.aboutPage = (req, res) => {
-    res.sendFile('about.html', { root: './views' }, (err) => {
-        if (err) {
-            console.error(`Error serving about.html: ${err.message}`);
-            res.status(500).send('Error loading the About Page.');
-        }
-    });
+    res.render('about', { username: req.session.username || null });
 };
 
-// Contact Us Page
+
+// Contact Us Page (Using EJS)
 exports.contactPage = (req, res) => {
-    res.sendFile('contact.html', { root: './views' }, (err) => {
-        if (err) {
-            console.error(`Error serving contact.html: ${err.message}`);
-            res.status(500).send('Error loading the Contact Page.');
-        }
-    });
+    res.render('contact', { username: req.session.username || null });
 };
+
 
 
 exports.homePage = (req, res) => {

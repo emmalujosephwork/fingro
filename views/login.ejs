@@ -18,17 +18,16 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/about">About</a></li>
                 <li><a href="/contact">Contact</a></li>
-                <% if (typeof username !== 'undefined' && username) { %>
+    
+                <% if (username) { %>
                     <li><span class="welcome-text">Welcome, <%= username %>!</span></li>
-                    <li><a href="/logout" class="btn red">Logout</a></li>
+                    <li><a href="/logout">Logout</a></li>
                 <% } else { %>
-                    <li><a href="/login" class="btn blue">Login</a></li>
+                    <li><a href="/login">Login</a></li>
                 <% } %>
-                
             </ul>
         </div>
     </nav>
-
     <!-- Parallax Section -->
     <div class="parallax-container">
         <div class="parallax"><img src="/images/parallax-background.jpg" alt="Background"></div>
