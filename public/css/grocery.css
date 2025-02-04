@@ -1,5 +1,4 @@
 /* Basic card styling */
-
 .option-card {
     height: 200px;
     display: flex;
@@ -10,17 +9,13 @@
     transition: background-color 0.3s ease-in-out;
 }
 
-
 /* Hover effect for the cards */
-
 .option-card:hover {
-    background-color: #FF4081;
+    background-color: #87ff6f;
     color: white;
 }
 
-
 /* Specific styling for 'Add Recipe' card */
-
 .add-recipe {
     background-color: #B3E5FC;
 }
@@ -29,9 +24,7 @@
     color: white;
 }
 
-
 /* Specific styling for 'Grocery Planner' card */
-
 .grocery-planner {
     background-color: #FFEB3B;
 }
@@ -40,25 +33,54 @@
     color: white;
 }
 
-
 /* Styling for icons inside the cards */
-
 .option-card i {
     font-size: 4rem;
     color: #000;
 }
 
-
 /* Card title styling */
-
 .card-title {
     font-size: 1.5rem;
     font-weight: bold;
 }
 
+/* Set up the body for sticky footer */
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    margin: 0;
+}
+
+/* Main content wrapper */
+main {
+    flex: 1 0 auto;
+}
+
+/* Flexbox container for the buttons */
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    min-height: calc(100vh - 200px); /* Adjust based on footer and header height */
+    padding-top: 64px;
+    margin-top: 64px;
+}
+
+/* Footer styling */
+.page-footer {
+    flex-shrink: 0; /* Prevents footer from shrinking */
+    background-color: #d81b60;
+    padding: 20px 0;
+    color: white;
+    width: 100%;
+    position: relative; /* Changed from margin-top: auto */
+    bottom: 0;
+}
 
 /* Styling for mobile screens */
-
 @media only screen and (max-width: 768px) {
     .option-card {
         height: 150px;
@@ -69,29 +91,7 @@
     .card-title {
         font-size: 1.2rem;
     }
-}
-
-
-/* Flexbox container for the buttons */
-
-.button-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    height: 60vh;
-    /* Set the height to 60% of the viewport height */
-    padding-top: 64px;
-    /* Set padding to push the content below the navbar */
-    margin-top: 64px;
-    /* Ensures content starts below the navbar */
-}
-
-
-/* Footer styling (no changes here as per the request) */
-
-.page-footer {
-    background-color: #d81b60;
-    padding: 20px 0;
-    color: white;
+    .button-container {
+        min-height: calc(100vh - 180px); /* Adjusted for mobile */
+    }
 }

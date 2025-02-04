@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grocery Planning</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/grocery.css">
@@ -36,27 +37,34 @@
         <p>Choose an option below to get started.</p>
 
         <!-- Cards for Add Recipe and Grocery Planner -->
-        <div class="button-container">
+        <div class="row">
             <div class="col s12 m6">
-                <a href="/recipe" class="card option-card add-recipe">
-                    <div class="card-content center-align">
-                        <i class="material-icons">add_circle</i>
-                        <span class="card-title">Add Recipe</span>
-                    </div>
-                </a>
+                <div class="card option-card add-recipe hoverable">
+                    <a href="/recipe" class="card-link">
+                        <div class="card-content center-align">
+                            <i class="material-icons large pink-text">restaurant_menu</i>
+                            <span class="card-title">Add Recipe</span>
+                            <p>Create and manage your recipes</p>
+                        </div>
+                    </a>
+                </div>
             </div>
             <div class="col s12 m6">
-                <a href="/grocerylist" class="card option-card grocery-planner">
-                    <div class="card-content center-align">
-                        <i class="material-icons">store</i>
-                        <span class="card-title">Grocery Planner</span>
-                    </div>
-                </a>
+                <div class="card option-card grocery-planner hoverable">
+                    <a href="/grocerylist" class="card-link">
+                        <div class="card-content center-align">
+                            <i class="material-icons large pink-text">shopping_cart</i>
+                            <span class="card-title">Grocery Planner</span>
+                            <p>Plan your weekly groceries</p>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
+ 
 
-    <!-- Footer Section -->
+    <!-- Footer -->
     <footer class="page-footer pink">
         <div class="container">
             <div class="row">
