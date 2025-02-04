@@ -1,0 +1,75 @@
+/* Recipe Page Styling */
+
+.container {
+    text-align: center;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+
+/* Ingredient Row Styling */
+
+.ingredient-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.ingredient-name,
+#quantity {
+    width: 100%;
+    /* Ensure they take up equal width */
+}
+
+.add-ingredient-btn,
+.remove-ingredient-btn {
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.add-ingredient-btn {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    font-size: 24px;
+}
+
+.remove-ingredient-btn {
+    background-color: #f44336;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    font-size: 24px;
+}
+
+
+/* Footer Styling */
+
+.page-footer {
+    background-color: #d81b60;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.page-footer p {
+    color: white;
+    font-size: 18px;
+}
+
+
+/* Ensure the footer stays at the bottom */
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.container {
+    flex-grow: 1;
+}
