@@ -1,35 +1,39 @@
 const express = require('express');
 const router = express.Router();
-const appController = require('../controllers/appController'); // Controller for routes
+const groceryController = require('../controllers/groceryController');
+const homeController = require('../controllers/homeController');
+const signupController = require('../controllers/signupController'); 
+const expenseController = require('../controllers/expenseController'); 
+const recipeController = require('../controllers/recipeController');  // Controller for routes
 const Expense = require('../models/Expense'); // Expense Model
 const Goal = require('../models/Goal'); // Goal Model
 const GroceryList = require('../models/grocerylist'); // Adjust the path based on your folder structure
 
 
 // Home Route
-router.get('/', appController.homePage);
+router.get('/', homeController.homePage);
 
 // Recipe Page Route (Render recipe.ejs with ingredients)
-router.get('/recipe', appController.recipePage); // Show recipe page with ingredients
-router.post('/recipe', appController.handleRecipe); // Handle recipe form submission
+router.get('/recipe', recipeController.recipePage); // Show recipe page with ingredients
+router.post('/recipe', recipeController.handleRecipe); // Handle recipe form submission
 
 // Add Ingredient Route
-router.post('/add-ingredient', appController.addIngredient); // Handle adding new ingredient
+router.post('/add-ingredient', recipeController.addIngredient); // Handle adding new ingredient
 
 // Other routes
-router.get('/grocery-plan', appController.groceryPlan);
+router.get('/grocery-plan', homeController.groceryPlan);
 // Grocery List Page Route (GET)
-router.get('/grocerylist', appController.groceryList);
+router.get('/grocerylist', groceryController.groceryList);
 
 // Save Grocery List (POST)
-router.post('/grocerylist', appController.saveGroceryList); // Save the weekly grocery list
+router.post('/grocerylist', groceryController.saveGroceryList); // Save the weekly grocery list
 
-router.get('/money-manager', appController.moneyManager);
-router.get('/login', appController.loginPage);
-router.get('/signup', appController.signupPage); // Show the sign-up page
-router.post('/signup', appController.handleSignup); // Handle form submission
-router.get('/about', appController.aboutPage);
-router.get('/contact', appController.contactPage);
+router.get('/money-manager', homeController.moneyManager);
+router.get('/login', homeController.loginPage);
+router.get('/signup', signupController.signupPage); // Show the sign-up page
+router.post('/signup', signupController.handleSignup); // Handle form submission
+router.get('/about', homeController.aboutPage);
+router.get('/contact', homeController.contactPage);
 
 // --- Tracker API Routes ---
 
@@ -169,7 +173,7 @@ router.get('/grocery-purchase-list', async(req, res) => {
     }
 });
 
-router.post('/update-grocery-list', appController.updateGroceryList); // Handles the form submission to update the grocery list
+router.post('/update-grocery-list', groceryController.updateGroceryList); // Handles the form submission to update the grocery list
 
 
 
