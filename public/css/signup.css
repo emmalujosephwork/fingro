@@ -6,13 +6,23 @@ body {
     margin: 0;
     padding: 0;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
+
+
+/* Container */
 
 .container {
     width: 100%;
     max-width: 1100px;
     margin-top: 20px;
+    flex-grow: 1;
+    /* Add space to ensure footer isn't hidden */
 }
+
+
+/* Card and inputs styling */
 
 .card {
     border-radius: 10px;
@@ -22,95 +32,48 @@ body {
     height: 100%;
 }
 
-.card .card-title {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 30px;
-}
 
-.card .input-field input {
-    border-radius: 5px;
-    padding: 10px;
-}
+/* Footer at the bottom */
 
-.card .input-field label {
-    font-size: 1.1rem;
-}
-
-.card .btn {
-    width: 100%;
-    border-radius: 5px;
-    padding: 12px;
-    font-size: 1.2rem;
-}
-
-.card .row a {
-    font-size: 0.9rem;
-    text-decoration: underline;
-}
-
-.card .pink {
+.page-footer {
     background-color: #d81b60 !important;
-}
-
-.card .pink-text.text-lighten-2 {
-    color: #f50057 !important;
-}
-
-.card .card-content {
-    padding: 20px;
-    flex-grow: 1;
-}
-
-.card .card-content h4 {
-    font-size: 1.8rem;
+    margin-top: auto;
+    /* Pushes footer to the bottom */
+    padding: 10px 0;
     text-align: center;
 }
 
-.card .card-content p {
-    font-size: 1.2rem;
-    text-align: center;
-}
-
-
-/* Ensures both cards are the same height */
-
-.row {
-    justify-content: center;
-    /* Center the items in row */
-    gap: 0px;
-}
-
-.col.s12.m6.l6 {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 0;
+.page-footer p {
+    color: white;
     margin: 0;
 }
 
-.col.s12.m6.l6:first-child {
+.fixed-container {
+    margin-top: 100px;
+    flex-grow: 1;
+}
+
+
+/* Ensures the button is centered */
+
+.center-align {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.centered-btn {
     width: 100%;
-    /* For Sign Up form card, make it full width */
-    margin-bottom: 20px;
-    /* Space between the Sign Up card and next card */
-}
-
-.col.s12.m6.l6:last-child {
-    display: none;
-    /* No need for the right card (Welcome) in Sign-Up page */
-}
-
-
-/* Sign Up Button Styling */
-
-.btn-signup {
-    font-size: 1.2rem;
-    padding: 12px 30px;
-    border-radius: 30px;
-    margin-top: 20px;
-    display: inline-block;
     text-align: center;
+    font-size: 1.2rem;
+    padding: 12px;
+}
+
+
+/* Customize button color */
+
+.btn.pink {
+    background-color: #d81b60 !important;
 }
 
 
@@ -132,9 +95,5 @@ body {
     }
     .col.s12.m6.l6 {
         margin-bottom: 20px;
-    }
-    /* Ensure the cards stack correctly on small screens */
-    .col.s12.m6.l6:first-child {
-        width: 100%;
     }
 }

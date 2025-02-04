@@ -5,13 +5,15 @@ const mongoose = require('mongoose');
 
 
 
-
 // Grocery List Page Route
 exports.groceryList = async(req, res) => {
     try {
         // Fetch all recipes to populate the dropdown
         const recipes = await Recipe.find();
-        res.render('grocerylist', { recipes }); // Render 'grocerylist.html' with recipe data
+        res.render('grocerylist', {
+            username: req.session.username || null, // Pass username
+            recipes // Pass recipes data
+        });
     } catch (err) {
         console.error(err);
         res.status(500).send('Error fetching recipes');
@@ -19,10 +21,8 @@ exports.groceryList = async(req, res) => {
 };
 
 // Grocery List Page Route
+// Grocery List Page Route
 exports.groceryList = async(req, res) => {
-
-    // Continue with the rest of the processing...
-
     try {
         // Fetch all recipes from the database to populate the dropdown
         const recipes = await Recipe.find();
@@ -65,7 +65,7 @@ exports.groceryList = async(req, res) => {
                 for (const [ingredientId, quantity] of Object.entries(recipe.ingredients)) {
                     if (groupedIngredients[ingredientId]) {
                         // Add quantity if ingredient is already grouped
-                        groupedIngredients[ingredientId].quantity += parseFloat(quantity); // assuming quantity is a number in string form
+                        groupedIngredients[ingredientId].quantity += parseFloat(quantity);
                     } else {
                         // Initialize if ingredient is not grouped yet
                         groupedIngredients[ingredientId] = {
@@ -91,14 +91,19 @@ exports.groceryList = async(req, res) => {
             }
         }
 
-        // Render the grocery list page with the calculated grocery list
-        res.render('grocerylist', { groceryList, recipes });
+        // Render the grocery list page with the calculated grocery list and username
+        res.render('grocerylist', {
+            username: req.session.username || null, // Pass username
+            groceryList,
+            recipes
+        });
 
     } catch (err) {
         console.error(err);
         res.status(500).send('Error generating grocery list');
     }
 };
+
 
 // Save Grocery Purchase List (POST)
 exports.saveGroceryList = async(req, res) => {
@@ -186,7 +191,8 @@ exports.saveGroceryList = async(req, res) => {
             sundayLunch: req.body.sundayLunch,
             sundayDinner: req.body.sundayDinner,
             ingredients: result,
-            numberOfPeople: numberOfPeople // Save the number of people
+            numberOfPeople: numberOfPeople, // Save the number of people
+            userId: req.session.userId // Save the userId from session
         });
 
         await newGroceryList.save();
@@ -194,8 +200,11 @@ exports.saveGroceryList = async(req, res) => {
         // Fetch the newly saved grocery list from the database
         const savedGroceryList = await GroceryList.findById(newGroceryList._id).populate('ingredients.ingredientId');
 
-        // Pass the grocery list to the view
-        res.render('grocery-purchase-list', { groceryList: savedGroceryList });
+        // Pass the grocery list and username to the view
+        res.render('grocery-purchase-list', {
+            username: req.session.username || null, // Pass username
+            groceryList: savedGroceryList
+        });
     } catch (err) {
         console.error('Error saving grocery purchase list:', err.message);
         res.status(500).json({ error: err.message });
@@ -226,17 +235,12 @@ exports.updateGroceryList = async(req, res) => {
 
         // Handle the three scenarios based on the number of people:
         if (peopleCount < existingPeopleCount) {
-            // Case 1: User provides fewer people than existing number of people in DB
             groceryList.ingredients.forEach(ingredient => {
-                ingredient.totalQuantity = (ingredient.totalQuantity / existingPeopleCount) * peopleCount; // Divide by DB value, then multiply by user input
+                ingredient.totalQuantity = (ingredient.totalQuantity / existingPeopleCount) * peopleCount;
             });
-        } else if (peopleCount === existingPeopleCount) {
-            // Case 2: No change needed
-            // Do nothing
         } else if (peopleCount > existingPeopleCount) {
-            // Case 3: User provides more people than existing number of people in DB
             groceryList.ingredients.forEach(ingredient => {
-                ingredient.totalQuantity = (ingredient.totalQuantity / existingPeopleCount) * peopleCount; // Divide by DB value, then multiply by user input
+                ingredient.totalQuantity = (ingredient.totalQuantity / existingPeopleCount) * peopleCount;
             });
         }
 
@@ -250,16 +254,35 @@ exports.updateGroceryList = async(req, res) => {
         const updatedGroceryList = await GroceryList.findById(groceryListId).populate('ingredients.ingredientId');
 
         // Redirect to the grocery purchase list page with the updated values
-        res.render('grocery-purchase-list', { groceryList: updatedGroceryList });
+        res.render('grocery-purchase-list', {
+            username: req.session.username || null, // Pass username
+            groceryList: updatedGroceryList
+        });
     } catch (err) {
         console.error('Error updating grocery purchase list:', err.message);
         res.status(500).json({ error: err.message });
     }
 };
 
+// In groceryController.js
+// Display the user's grocery list
+exports.displayGroceryList = async(req, res) => {
+    try {
+        // Fetch recipes added by the current user
+        const userId = req.session.userId; // Assuming userId is stored in session
+        const recipes = await Recipe.find({ userId: userId });
 
+        // Fetch the grocery list for the current user
+        const groceryLists = await GroceryList.find({ userId: userId }).populate('ingredients.ingredientId');
 
-
-
-
-
+        // Render the 'displaygrocerylist.ejs' template and pass the recipes
+        res.render('displaygrocerylist', {
+            recipes: recipes, // Pass the recipes array to the view
+            groceryLists: groceryLists, // Pass grocery lists if needed
+            username: req.session.username || null, // Pass username for personalization
+        });
+    } catch (err) {
+        console.error("Error fetching grocery list:", err.message);
+        res.status(500).send("Error fetching grocery list");
+    }
+};

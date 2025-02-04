@@ -6,6 +6,7 @@ const signupController = require('../controllers/signupController');
 const expenseController = require('../controllers/expenseController');
 const loginController = require('../controllers/loginController');
 const recipeController = require('../controllers/recipeController');
+const ingridientController = require('../controllers/ingridientController');
 const authenticationMiddleware = require('../middlewares/authenticationMiddleware'); // Import authentication middleware
 const Expense = require('../models/Expense');
 const Goal = require('../models/Goal');
@@ -28,7 +29,7 @@ router.get('/recipe', recipeController.recipePage); // Show recipe page with ing
 router.post('/recipe', recipeController.handleRecipe); // Handle recipe form submission
 
 // Add Ingredient Route
-router.post('/add-ingredient', recipeController.addIngredient); // Handle adding new ingredient
+router.post('/add-ingredient', ingridientController.addIngredient); // Handle adding new ingredient
 
 // Protected Routes - Use the authentication middleware here
 router.get('/grocery-plan', authenticationMiddleware, homeController.groceryPlan); // Protect this route
@@ -43,6 +44,7 @@ router.post('/grocerylist', groceryController.saveGroceryList); // Save the week
 // Other Routes
 router.get('/about', homeController.aboutPage);
 router.get('/contact', homeController.contactPage);
+router.post('/update-grocery-list', groceryController.updateGroceryList);
 
 // --- Tracker API Routes ---
 
@@ -120,6 +122,23 @@ router.get('/grocery-purchase-list', async(req, res) => {
         res.status(500).send('Error fetching grocery list');
     }
 });
+
+router.get('/viewingridients', ingridientController.displayIngridients);
+// Handle update ingredient
+router.post('/update-ingredient', ingridientController.updateIngredient);
+
+// Route to display recipes added by the logged-in user
+router.get('/displayrecipe', authenticationMiddleware, recipeController.displayUserRecipes);
+
+// Controller to handle fetching the recipe for editing
+router.get('/edit-ingredients/:id', authenticationMiddleware, recipeController.editRecipePage);
+
+// Controller for handling the save after editing
+router.post('/edit-ingredients/:id', authenticationMiddleware, recipeController.updateRecipe);
+
+// In your routes file (e.g., routes.js)
+router.get('/displaygrocerylist', authenticationMiddleware, groceryController.displayGroceryList);
+
 
 // Error Handling Routes
 router.use((req, res) => {

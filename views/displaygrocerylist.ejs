@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Grocery List</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/displayrecipe.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar-custom">
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo">FinGro</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+
+                <% if (username) { %>
+                    <li><span class="welcome-text">Welcome, <%= username %>!</span></li>
+                    <li><a href="/logout">Logout</a></li>
+                    <% } else { %>
+                        <li><a href="/login">Login</a></li>
+                        <% } %>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container" style="margin-top: 120px;">
+        <h2>Your Grocery List</h2>
+
+        <!-- Display all recipes added by the user -->
+        <div class="row">
+            <% if (recipes && recipes.length > 0) { %>
+                <% recipes.forEach(function(recipe) { %>
+                    <div class="col s12 m6">
+                        <div class="card">
+                            <div class="card-content">
+                                <span class="card-title"><%= recipe.dishName %></span>
+                                <ul class="ingredient-list">
+                                    <!-- Loop through the ingredients map and display each ingredient with its quantity -->
+                                    <% for (let [ingredient, quantity] of recipe.ingredients) { %>
+                                        <li>
+                                            <%= ingredient %>:
+                                                <%= quantity %>
+                                        </li>
+                                        <% } %>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <% }); %>
+                        <% } else { %>
+                            <p>No recipes found</p>
+                            <% } %>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="page-footer pink">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 center-align">
+                    <p class="white-text">Copyright © FinGro</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+
+</html>

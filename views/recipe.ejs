@@ -6,33 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe Page</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/recipe.css">
 </head>
 
 <body>
     <!-- Navigation Bar -->
-    <nav>
+    <nav class="navbar-custom">
         <div class="nav-wrapper">
             <a href="/" class="brand-logo">FinGro</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="/">Home</a></li>
                 <li><a href="/about">About</a></li>
                 <li><a href="/contact">Contact</a></li>
-                <li><a href="/login">Login</a></li>
+
+                <% if (username) { %>
+                    <li><span class="welcome-text">Welcome, <%= username %>!</span></li>
+                    <li><a href="/logout">Logout</a></li>
+                    <% } else { %>
+                        <li><a href="/login">Login</a></li>
+                        <% } %>
             </ul>
         </div>
     </nav>
 
-    <div class="container">
-        <h2>Add New Ingredient</h2>
-        <form action="/add-ingredient" method="POST">
-            <div class="input-field">
-                <input type="text" id="ingredient" name="ingredient" required>
-                <label for="ingredient">Ingredient Name</label>
-            </div>
-            <button type="submit" class="btn pink">Add Ingredient</button>
-        </form>
-
+    <div class="container" style="margin-top: 120px;">
         <h2>Create a New Recipe</h2>
         <form action="/recipe" method="POST">
             <!-- Dish Name Field -->
@@ -44,25 +43,25 @@
             <div id="ingredients-container">
                 <!-- First row for ingredients and quantity -->
                 <div class="ingredient-row">
-                    <div class="input-field col s5">
-                        <select name="ingredientName[]" class="ingredient-name" required>
+                    <div class="input-field ingredient-name col s6">
+                        <select name="ingredientName[]" required>
                             <option value="" disabled selected>Choose Ingredient</option>
-                            <!-- Ingredients are populated dynamically here -->
                             <% ingredients.forEach(function(ingredient) { %>
                                 <option value="<%= ingredient._id %>"><%= ingredient.name %></option>
                             <% }); %>
                         </select>
                         <label>Ingredient</label>
                     </div>
-                    <div class="input-field col s5">
-                        <input type="text" name="quantity[]" id="quantity" required>
+                    <div class="input-field col s6">
+                        <input type="text" name="quantity[]" required>
                         <label for="quantity">Quantity</label>
                     </div>
-                    <button type="button" class="btn add-ingredient-btn">Add Next Ingredient</button>
+                    <i class="material-icons add-ingredient-btn">add_circle</i>
+                    <i class="material-icons remove-ingredient-btn">remove_circle</i>
                 </div>
             </div>
 
-            <button type="submit" class="btn pink">Save Recipe</button>
+            <button type="submit" class="btn pink centered-btn">Save Recipe</button>
         </form>
     </div>
 
@@ -85,41 +84,44 @@
             M.FormSelect.init(elems);
         });
 
-        // Add new ingredient row dynamically for the recipe
-        document.querySelector('.add-ingredient-btn').addEventListener('click', function() {
-            const ingredientsContainer = document.getElementById('ingredients-container');
-            const newRow = document.createElement('div');
-            newRow.classList.add('ingredient-row');
+        // Add event listener to dynamically add rows
+        document.querySelector('#ingredients-container').addEventListener('click', function(e) {
+            if (e.target && e.target.matches('.add-ingredient-btn')) {
+                const ingredientsContainer = document.getElementById('ingredients-container');
+                const newRow = document.createElement('div');
+                newRow.classList.add('ingredient-row');
 
-            newRow.innerHTML = `
-                <div class="input-field col s5">
-                    <select name="ingredientName[]" class="ingredient-name" required>
-                        <option value="" disabled selected>Choose Ingredient</option>
-                        <!-- Ingredients dropdown will be populated dynamically here -->
-                        <% ingredients.forEach(function(ingredient) { %>
-                            <option value="<%= ingredient._id %>"><%= ingredient.name %></option>
-                        <% }); %>
-                    </select>
-                    <label>Ingredient</label>
-                </div>
-                <div class="input-field col s5">
-                    <input type="text" name="quantity[]" required>
-                    <label for="quantity">Quantity</label>
-                </div>
-                <button type="button" class="btn remove-ingredient-btn">Remove</button>
-            `;
+                newRow.innerHTML = `
+                    <div class="input-field ingredient-name col s6">
+                        <select name="ingredientName[]" required>
+                            <option value="" disabled selected>Choose Ingredient</option>
+                            <% ingredients.forEach(function(ingredient) { %>
+                                <option value="<%= ingredient._id %>"><%= ingredient.name %></option>
+                            <% }); %>
+                        </select>
+                        <label>Ingredient</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input type="text" name="quantity[]" required>
+                        <label for="quantity">Quantity</label>
+                    </div>
+                    <i class="material-icons remove-ingredient-btn">remove_circle</i>
+                `;
 
-            ingredientsContainer.appendChild(newRow);
+                ingredientsContainer.appendChild(newRow);
 
-            // Re-initialize the select dropdown for the new row
-            M.FormSelect.init(newRow.querySelector('select'));
+                // Re-initialize the select dropdown for the new row
+                M.FormSelect.init(newRow.querySelector('select'));
+            }
 
-            // Add functionality to remove a row
-            newRow.querySelector('.remove-ingredient-btn').addEventListener('click', function() {
-                ingredientsContainer.removeChild(newRow);
-            });
+            // Event listener for remove button
+            if (e.target && e.target.matches('.remove-ingredient-btn')) {
+                const row = e.target.closest('.ingredient-row');
+                row.remove();
+            }
         });
     </script>
+
 </body>
 
 </html>

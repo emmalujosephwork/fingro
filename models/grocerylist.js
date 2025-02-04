@@ -27,7 +27,8 @@ const groceryListSchema = new mongoose.Schema({
         ingredientName: { type: String },
         totalQuantity: { type: Number }
     }],
-    numberOfPeople: { type: Number, default: 1 } // Add this field
+    numberOfPeople: { type: Number, default: 1 }, // Add this field
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' } // Add the userId field
 });
 
 const GroceryList = mongoose.model('GroceryList', groceryListSchema);

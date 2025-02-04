@@ -14,7 +14,6 @@
 <body>
 
     <!-- Navigation Bar -->
-
     <nav class="navbar-custom">
         <div class="nav-wrapper">
             <a href="/" class="brand-logo">FinGro</a>
@@ -22,20 +21,19 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/about">About</a></li>
                 <li><a href="/contact">Contact</a></li>
-    
+
                 <% if (username) { %>
                     <li><span class="welcome-text">Welcome, <%= username %>!</span></li>
-                    <li><a href="/logout" class="btn red">Logout</a></li>
-                <% } else { %>
-                    <li><a href="/login" class="btn blue">Login</a></li>
-                <% } %>
+                    <li><a href="/logout">Logout</a></li>
+                    <% } else { %>
+                        <li><a href="/login">Login</a></li>
+                        <% } %>
             </ul>
         </div>
     </nav>
-    
 
-     <!-- Parallax Section -->
-     <div class="parallax-container">
+    <!-- Parallax Section -->
+    <div class="parallax-container">
         <div class="parallax"><img src="/images/parallax-background.jpg" alt="Background"></div>
         <div class="overlay"></div>
     </div>
@@ -71,14 +69,14 @@
             </div>
 
             <!-- Contact Details -->
-            <div class="col s12 m6" >
+            <div class="col s12 m6">
                 <div class="card z-depth-4">
                     <div class="card-content">
                         <h5>Contact Details</h5>
                         <span class="material-icons">📧</span>
-                        <p > Email  : support@fingro.com</p>
+                        <p> Email : support@fingro.com</p>
                         <span class="material-icons">📱 </span>
-                        <p > Phone  :  +61 123 456 789</p>
+                        <p> Phone : +61 123 456 789</p>
                         <span class="material-icons">🌍</span>
                         <p> Addressv: Somewhere on Planet Earth</p>
                     </div>

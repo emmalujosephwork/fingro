@@ -7,13 +7,13 @@
     <title>Tracker - FinGro</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="/css/tracker.css"> <!-- New tracker-specific CSS -->
+    <link rel="stylesheet" href="/css/tracker.css">
+    <!-- New tracker-specific CSS -->
 </head>
 
 <body>
 
     <!-- Navigation Bar -->
-
     <nav class="navbar-custom">
         <div class="nav-wrapper">
             <a href="/" class="brand-logo">FinGro</a>
@@ -21,20 +21,19 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/about">About</a></li>
                 <li><a href="/contact">Contact</a></li>
-    
+
                 <% if (username) { %>
                     <li><span class="welcome-text">Welcome, <%= username %>!</span></li>
-                    <li><a href="/logout" class="btn red">Logout</a></li>
-                <% } else { %>
-                    <li><a href="/login" class="btn blue">Login</a></li>
-                <% } %>
+                    <li><a href="/logout">Logout</a></li>
+                    <% } else { %>
+                        <li><a href="/login">Login</a></li>
+                        <% } %>
             </ul>
         </div>
     </nav>
-    
 
     <!-- Main Tracker Section -->
-    <div class="container">
+    <div class="container marg">
         <h4 class="center-align pink-text text-lighten-2">Expense and Savings Tracker</h4>
 
         <!-- Expenses Section -->
@@ -47,7 +46,8 @@
                         <th>Amount</th>
                         <th>Category</th>
                         <th>Date</th>
-                        <th>Actions</th> <!-- Future Option for Edit/Delete -->
+                        <th>Actions</th>
+                        <!-- Future Option for Edit/Delete -->
                     </tr>
                 </thead>
                 <tbody id="expense-list">
@@ -85,7 +85,8 @@
                         <th>Target Amount</th>
                         <th>Saved Amount</th>
                         <th>Due Date</th>
-                        <th>Actions</th> <!-- Future Option for Edit/Delete -->
+                        <th>Actions</th>
+                        <!-- Future Option for Edit/Delete -->
                     </tr>
                 </thead>
                 <tbody id="goal-list">
