@@ -7,21 +7,27 @@
     <title>Tracker - FinGro</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="/css/tracker.css"> <!-- Tracker-specific CSS -->
+    <link rel="stylesheet" href="/css/tracker.css">
+    <!-- Tracker-specific CSS -->
 </head>
 
 <body>
 
     <!-- Navigation Bar -->
-    <nav>
+    <nav class="navbar-custom">
         <div class="nav-wrapper">
             <a href="/" class="brand-logo">FinGro</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="/">Home</a></li>
                 <li><a href="/about">About</a></li>
                 <li><a href="/contact">Contact</a></li>
-                <li><a href="/tracker">Tracker</a></li>
-                <li><a href="/login">Login</a></li>
+
+                <% if (username) { %>
+                    <li><span class="welcome-text">Welcome, <%= username %>!</span></li>
+                    <li><a href="/logout">Logout</a></li>
+                    <% } else { %>
+                        <li><a href="/login">Login</a></li>
+                        <% } %>
             </ul>
         </div>
     </nav>

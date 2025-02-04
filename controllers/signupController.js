@@ -1,19 +1,16 @@
-const bcrypt = require('bcryptjs');  // For hashing passwords
-const User = require('../models/User');  // User model for database operations
+const bcrypt = require('bcryptjs'); // For hashing passwords
+const User = require('../models/User'); // User model for database operations
 
 
 // Signup Page (GET)
 exports.signupPage = (req, res) => {
-    res.sendFile('signup.html', { root: './views' }, (err) => {
-        if (err) {
-            console.error(`Error serving signup.html: ${err.message}`);
-            res.status(500).send('Error loading the Signup Page.');
-        }
-    });
+    // Render signup page and pass username from session
+    res.render('signup', { username: req.session.username || null });
 };
 
+
 // Handle Signup Form Submission (POST)
-exports.handleSignup = async (req, res) => {
+exports.handleSignup = async(req, res) => {
     try {
         let { name, email, password, mobile } = req.body;
 
@@ -47,11 +44,14 @@ exports.handleSignup = async (req, res) => {
 
         await newUser.save();
 
-        // Send a success response
-        res.status(201).json({ message: "User signed up successfully." });
+        // Set user session (optional, if you want them to be logged in automatically)
+        req.session.userId = newUser._id;
+        req.session.username = newUser.name;
+
+        // Redirect to home page after successful signup
+        res.redirect('/');
     } catch (err) {
         console.error(`❌ Error during signup: ${err.message}`);
         res.status(500).json({ error: "Internal Server Error" });
     }
 };
-
