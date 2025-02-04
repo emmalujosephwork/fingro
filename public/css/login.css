@@ -1,4 +1,5 @@
 /* General Styles */
+
 body {
     background-color: #f2f2f2;
     font-family: Arial, sans-serif;
@@ -13,7 +14,9 @@ html {
     height: 100%;
 }
 
+
 /* Sticky Footer */
+
 .container {
     flex: 1;
 }
@@ -28,7 +31,9 @@ footer {
     color: white;
 }
 
+
 /* Login Page Styles */
+
 .container {
     width: 100%;
     max-width: 1100px;
@@ -93,7 +98,9 @@ footer {
     text-align: center;
 }
 
+
 /* Ensure cards have equal heights */
+
 .row {
     display: flex;
     justify-content: space-between;
@@ -104,9 +111,7 @@ footer {
         width: 100%;
         padding: 10px;
     }
-
     .row {
         flex-direction: column;
     }
 }
-git checkout main
