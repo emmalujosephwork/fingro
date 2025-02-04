@@ -127,6 +127,15 @@ router.get('/viewingridients', ingridientController.displayIngridients);
 // Handle update ingredient
 router.post('/update-ingredient', ingridientController.updateIngredient);
 
+// Route to display recipes added by the logged-in user
+router.get('/displayrecipe', authenticationMiddleware, recipeController.displayUserRecipes);
+
+// Controller to handle fetching the recipe for editing
+router.get('/edit-ingredients/:id', authenticationMiddleware, recipeController.editRecipePage);
+
+// Controller for handling the save after editing
+router.post('/edit-ingredients/:id', authenticationMiddleware, recipeController.updateRecipe);
+
 // Error Handling Routes
 router.use((req, res) => {
     res.status(404).json({ error: 'Route not found' });
