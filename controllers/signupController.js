@@ -13,26 +13,31 @@ exports.signupPage = (req, res) => {
 };
 
 // Handle Signup Form Submission (POST)
-exports.handleSignup = async(req, res) => {
+exports.handleSignup = async (req, res) => {
     try {
-        const { name, email, password, mobile } = req.body;
+        let { name, email, password, mobile } = req.body;
+
+        // Trim input values to avoid unnecessary spaces
+        name = name.trim();
+        email = email.trim();
+        mobile = mobile.trim();
 
         // Validation: Ensure all fields are filled
         if (!name || !email || !password || !mobile) {
-            return res.status(400).json({ error: 'All fields are required.' });
+            return res.status(400).json({ error: "All fields are required." });
         }
 
-        // Check if email already exists in the database
+        // Check if email already exists
         const existingUser = await User.findOne({ email });
         if (existingUser) {
-            return res.status(400).json({ error: 'Email already exists.' });
+            return res.status(400).json({ error: "User already exists. Please log in." });
         }
 
-        // Hash the password before saving it
+        // Hash the password before saving
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        // Create a new user object
+        // Create and save the new user
         const newUser = new User({
             name,
             email,
@@ -40,14 +45,13 @@ exports.handleSignup = async(req, res) => {
             mobile
         });
 
-        // Save the new user to the database
         await newUser.save();
 
-        // Send a success message after the user is created
-        res.status(201).json({ message: 'User signed up successfully.' });
+        // Send a success response
+        res.status(201).json({ message: "User signed up successfully." });
     } catch (err) {
-        console.error(`Error during signup: ${err.message}`);
-        res.status(500).json({ error: 'Internal Server Error' });
+        console.error(`❌ Error during signup: ${err.message}`);
+        res.status(500).json({ error: "Internal Server Error" });
     }
 };
 

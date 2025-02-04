@@ -1,15 +1,13 @@
 const path = require('path');
 
-
-// Home Page
 exports.homePage = (req, res) => {
-    res.sendFile('index.html', { root: './views' }, (err) => {
-        if (err) {
-            console.error(`Error serving index.html: ${err.message}`);
-            res.status(500).send('Error loading the Home Page.');
-        }
-    });
+    res.render('index', { username: req.session.username || null });
 };
+
+exports.loginPage = (req, res) => {
+    res.render('login', { username: req.session.username || null, error: null });
+};
+
 
 // Grocery Planning Page
 exports.groceryPlan = (req, res) => {
@@ -31,15 +29,15 @@ exports.moneyManager = (req, res) => {
     });
 };
 
-// Login Page
-exports.loginPage = (req, res) => {
-    res.sendFile('login.html', { root: './views' }, (err) => {
-        if (err) {
-            console.error(`Error serving login.html: ${err.message}`);
-            res.status(500).send('Error loading the Login Page.');
-        }
-    });
-};
+// // Login Page
+// exports.loginPage = (req, res) => {
+//     res.sendFile('login', { root: './views' }, (err) => {
+//         if (err) {
+//             console.error(`Error serving login.html: ${err.message}`);
+//             res.status(500).send('Error loading the Login Page.');
+//         }
+//     });
+// };
 
 
 // About Page
@@ -60,4 +58,13 @@ exports.contactPage = (req, res) => {
             res.status(500).send('Error loading the Contact Page.');
         }
     });
+};
+
+
+exports.homePage = (req, res) => {
+    if (req.session.userId) {
+        res.render('index', { username: req.session.username });
+    } else {
+        res.render('index', { username: null });
+    }
 };
