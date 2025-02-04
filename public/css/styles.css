@@ -276,24 +276,25 @@
         text-decoration: underline;
         /* Add underline on hover */
     }
-
     /* Navbar Styles */
-.navbar-custom {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    background: rgba(255, 255, 255, 0.9); /* Slight transparency */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    padding: 10px 20px;
-    z-index: 1000;
-}
-/* 
+    
+    .navbar-custom {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        background: rgba(255, 255, 255, 0.9);
+        /* Slight transparency */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 10px 20px;
+        z-index: 1000;
+    }
+    /* 
 
 
 /* Welcome Text Styling */
-.welcome-text {
-    font-weight: bold;
-    color: black !important;
-    margin-right: 10px;
-}
-
+    
+    .welcome-text {
+        font-weight: bold;
+        color: black !important;
+        margin-right: 10px;
+    }
