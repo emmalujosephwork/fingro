@@ -5,7 +5,7 @@ exports.homePage = (req, res) => {
 };
 
 exports.loginPage = (req, res) => {
-    res.render('login', { username: req.session.username || null});
+    res.render('login', { username: req.session.username || null });
 };
 
 
@@ -19,17 +19,6 @@ exports.groceryPlan = (req, res) => {
 exports.moneyManager = (req, res) => {
     res.render('money-manager', { username: req.session.username || null });
 };
-
-
-// // Login Page
-// exports.loginPage = (req, res) => {
-//     res.sendFile('login', { root: './views' }, (err) => {
-//         if (err) {
-//             console.error(`Error serving login.html: ${err.message}`);
-//             res.status(500).send('Error loading the Login Page.');
-//         }
-//     });
-// };
 
 
 // About Page (Using EJS)
