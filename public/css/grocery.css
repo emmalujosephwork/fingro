@@ -70,3 +70,28 @@
         font-size: 1.2rem;
     }
 }
+
+
+/* Flexbox container for the buttons */
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    height: 60vh;
+    /* Set the height to 60% of the viewport height */
+    padding-top: 64px;
+    /* Set padding to push the content below the navbar */
+    margin-top: 64px;
+    /* Ensures content starts below the navbar */
+}
+
+
+/* Footer styling (no changes here as per the request) */
+
+.page-footer {
+    background-color: #d81b60;
+    padding: 20px 0;
+    color: white;
+}
