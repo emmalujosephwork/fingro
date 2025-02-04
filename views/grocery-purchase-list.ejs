@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grocery Purchase List</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/styles.css">
+
     <link rel="stylesheet" href="/css/grocerypurchaselist.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 
 <body>
-    <nav>
+    <nav class="navbar-custom">
         <div class="nav-wrapper">
             <a href="/" class="brand-logo">FinGro</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -19,6 +20,7 @@
                 <li><a href="/about">About</a></li>
                 <li><a href="/contact">Contact</a></li>
                 <li><a href="/login">Login</a></li>
+                <!-- Added login link here -->
             </ul>
         </div>
     </nav>
@@ -36,7 +38,7 @@
             <!-- Hidden field for grocery list ID -->
             <input type="hidden" name="groceryListId" value="<%= groceryList._id %>">
 
-            <button type="submit" class="btn pink">Update Quantities</button>
+            <button type="submit" class="btn pink centered-btn">Update Quantities</button>
         </form>
 
         <table class="highlight">

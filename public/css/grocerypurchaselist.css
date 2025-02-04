@@ -1,0 +1,131 @@
+/* Grocery Purchase List Styles */
+
+.container {
+    margin-top: 30px;
+    text-align: center;
+    padding: 20px;
+}
+
+
+/* Table Styles */
+
+table.highlight {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+table.highlight th,
+table.highlight td {
+    padding: 10px;
+    text-align: left;
+    font-size: 16px;
+    border-bottom: 1px solid #ddd;
+}
+
+table.highlight th {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+table.highlight tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table.highlight tr:hover {
+    background-color: #f1f1f1;
+}
+
+
+/* Input and Button Styling */
+
+.input-field {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+input[type="number"] {
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+button[type="submit"] {
+    margin-top: 20px;
+    background-color: #d81b60;
+    /* Pink color */
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    width: 100%;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #f06292;
+    /* Hover effect */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Footer Section */
+
+.page-footer {
+    background-color: #d81b60;
+    padding: 10px 0;
+    color: white;
+    text-align: center;
+}
+
+.page-footer p {
+    font-size: 16px;
+}
+
+
+/* Center the form and content */
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+form .input-field label {
+    font-size: 14px;
+    color: #333;
+}
+
+form .input-field input {
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+
+/* Responsive Styles */
+
+@media only screen and (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+    table.highlight th,
+    table.highlight td {
+        font-size: 14px;
+    }
+    button[type="submit"] {
+        font-size: 14px;
+        padding: 8px;
+    }
+    .page-footer p {
+        font-size: 14px;
+    }
+}
