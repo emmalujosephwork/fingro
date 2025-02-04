@@ -248,7 +248,6 @@ exports.saveGroceryList = async(req, res) => {
         for (const recipeId of validRecipeIds) {
             const recipe = await Recipe.findById(recipeId);
             if (recipe) {
-                // Loop through each ingredient in the recipe and push them into the allIngredients array
                 for (const [ingredientId, quantity] of recipe.ingredients) {
                     allIngredients.push({ ingredientId, quantity: parseInt(quantity) });
                 }
@@ -284,6 +283,9 @@ exports.saveGroceryList = async(req, res) => {
             totalQuantity: ingredient.quantity
         }));
 
+        // Set default numberOfPeople to 1 if not provided
+        const numberOfPeople = req.body.numberOfPeople ? parseInt(req.body.numberOfPeople) : 1;
+
         // Create a new grocery list to save in the database
         const newGroceryList = new GroceryList({
             mondayBreakfast: req.body.mondayBreakfast,
@@ -307,7 +309,8 @@ exports.saveGroceryList = async(req, res) => {
             sundayBreakfast: req.body.sundayBreakfast,
             sundayLunch: req.body.sundayLunch,
             sundayDinner: req.body.sundayDinner,
-            ingredients: result
+            ingredients: result,
+            numberOfPeople: numberOfPeople // Save the number of people
         });
 
         await newGroceryList.save();
@@ -322,6 +325,7 @@ exports.saveGroceryList = async(req, res) => {
         res.status(500).json({ error: err.message });
     }
 };
+
 
 
 exports.updateGroceryList = async(req, res) => {
@@ -341,21 +345,42 @@ exports.updateGroceryList = async(req, res) => {
             return res.status(404).json({ error: 'Grocery list not found.' });
         }
 
-        // Loop through ingredients and multiply their quantity by people count
-        groceryList.ingredients.forEach(ingredient => {
-            ingredient.totalQuantity *= peopleCount; // Multiply each ingredient's quantity by people count
-        });
+        // Get the existing number of people in the database
+        const existingPeopleCount = groceryList.numberOfPeople;
+
+        // Handle the three scenarios based on the number of people:
+        if (peopleCount < existingPeopleCount) {
+            // Case 1: User provides fewer people than existing number of people in DB
+            groceryList.ingredients.forEach(ingredient => {
+                ingredient.totalQuantity = (ingredient.totalQuantity / existingPeopleCount) * peopleCount; // Divide by DB value, then multiply by user input
+            });
+        } else if (peopleCount === existingPeopleCount) {
+            // Case 2: No change needed
+            // Do nothing
+        } else if (peopleCount > existingPeopleCount) {
+            // Case 3: User provides more people than existing number of people in DB
+            groceryList.ingredients.forEach(ingredient => {
+                ingredient.totalQuantity = (ingredient.totalQuantity / existingPeopleCount) * peopleCount; // Divide by DB value, then multiply by user input
+            });
+        }
+
+        // Update the number of people in the grocery list
+        groceryList.numberOfPeople = peopleCount;
 
         // Save the updated grocery list
         await groceryList.save();
 
-        // Redirect to the grocery purchase list page after saving
-        res.redirect('/grocery-purchase-list');
+        // Fetch the updated grocery list to pass to the EJS view
+        const updatedGroceryList = await GroceryList.findById(groceryListId).populate('ingredients.ingredientId');
+
+        // Redirect to the grocery purchase list page with the updated values
+        res.render('grocery-purchase-list', { groceryList: updatedGroceryList });
     } catch (err) {
         console.error('Error updating grocery purchase list:', err.message);
         res.status(500).json({ error: err.message });
     }
 };
+
 
 
 
