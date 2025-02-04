@@ -263,3 +263,26 @@ exports.updateGroceryList = async(req, res) => {
         res.status(500).json({ error: err.message });
     }
 };
+
+// In groceryController.js
+// Display the user's grocery list
+exports.displayGroceryList = async(req, res) => {
+    try {
+        // Fetch recipes added by the current user
+        const userId = req.session.userId; // Assuming userId is stored in session
+        const recipes = await Recipe.find({ userId: userId });
+
+        // Fetch the grocery list for the current user
+        const groceryLists = await GroceryList.find({ userId: userId }).populate('ingredients.ingredientId');
+
+        // Render the 'displaygrocerylist.ejs' template and pass the recipes
+        res.render('displaygrocerylist', {
+            recipes: recipes, // Pass the recipes array to the view
+            groceryLists: groceryLists, // Pass grocery lists if needed
+            username: req.session.username || null, // Pass username for personalization
+        });
+    } catch (err) {
+        console.error("Error fetching grocery list:", err.message);
+        res.status(500).send("Error fetching grocery list");
+    }
+};
