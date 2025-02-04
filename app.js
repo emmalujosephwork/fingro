@@ -15,7 +15,7 @@ app.use(session({
 
 
 // Connect to MongoDB Atlas
-mongoose.connect('mongodb+srv://fingroproject:emmalu123@fingrocloud.fgo8h.mongodb.net/fingrodb', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log('MongoDB connection error:', err));
 

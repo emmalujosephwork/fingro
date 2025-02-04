@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracker - FinGro</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/tracker.css"> <!-- New tracker-specific CSS -->
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+
+    <nav class="navbar-custom">
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo">FinGro</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+    
+                <% if (username) { %>
+                    <li><span class="welcome-text">Welcome, <%= username %>!</span></li>
+                    <li><a href="/logout" class="btn red">Logout</a></li>
+                <% } else { %>
+                    <li><a href="/login" class="btn blue">Login</a></li>
+                <% } %>
+            </ul>
+        </div>
+    </nav>
+    
+
+    <!-- Main Tracker Section -->
+    <div class="container">
+        <h4 class="center-align pink-text text-lighten-2">Expense and Savings Tracker</h4>
+
+        <!-- Expenses Section -->
+        <div class="section">
+            <h5 class="pink-text">Track Expenses</h5>
+            <table class="highlight centered responsive-table">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Amount</th>
+                        <th>Category</th>
+                        <th>Date</th>
+                        <th>Actions</th> <!-- Future Option for Edit/Delete -->
+                    </tr>
+                </thead>
+                <tbody id="expense-list">
+                    <!-- Dynamic Data -->
+                </tbody>
+            </table>
+
+            <h6 class="pink-text">Add New Expense</h6>
+            <form id="expense-form">
+                <div class="row">
+                    <div class="input-field col s12 m4">
+                        <input type="text" id="description" required>
+                        <label for="description">Description</label>
+                    </div>
+                    <div class="input-field col s12 m4">
+                        <input type="number" id="amount" required>
+                        <label for="amount">Amount</label>
+                    </div>
+                    <div class="input-field col s12 m4">
+                        <input type="text" id="category" required>
+                        <label for="category">Category</label>
+                    </div>
+                </div>
+                <button type="submit" class="btn pink">Add Expense</button>
+            </form>
+        </div>
+
+        <!-- Savings Goals Section -->
+        <div class="section">
+            <h5 class="pink-text">Savings Goals</h5>
+            <table class="highlight centered responsive-table">
+                <thead>
+                    <tr>
+                        <th>Goal Name</th>
+                        <th>Target Amount</th>
+                        <th>Saved Amount</th>
+                        <th>Due Date</th>
+                        <th>Actions</th> <!-- Future Option for Edit/Delete -->
+                    </tr>
+                </thead>
+                <tbody id="goal-list">
+                    <!-- Dynamic Data -->
+                </tbody>
+            </table>
+
+            <h6 class="pink-text">Add New Goal</h6>
+            <form id="goal-form">
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <input type="text" id="goalName" required>
+                        <label for="goalName">Goal Name</label>
+                    </div>
+                    <div class="input-field col s12 m3">
+                        <input type="number" id="targetAmount" required>
+                        <label for="targetAmount">Target Amount</label>
+                    </div>
+                    <div class="input-field col s12 m3">
+                        <input type="date" id="dueDate">
+                        <label for="dueDate">Due Date</label>
+                    </div>
+                </div>
+                <button type="submit" class="btn pink">Add Goal</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="page-footer pink">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 center-align">
+                    <p class="white-text">Copyright © FinGro</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/tracker.js"></script>
+</body>
+
+</html>
